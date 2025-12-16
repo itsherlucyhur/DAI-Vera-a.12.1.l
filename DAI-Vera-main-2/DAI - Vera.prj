@@ -1,0 +1,153 @@
+<deployment-project plugin="plugin.apptool" plugin-version="1.0">
+  <configuration build-checksum="2635684530" file="C:\Team\cmendes only\DAIVera- new version\DAI - Vera.prj" location="C:\Team\cmendes only\DAIVera- new version" name="DAI - Vera" target="target.mlapps" target-name="Package App">
+    <param.appname>DAI - Vera</param.appname>
+    <param.authnamewatermark />
+    <param.email />
+    <param.company />
+    <param.icon>${PROJECT_ROOT}\DAI - Vera_resources\icon_24.png</param.icon>
+    <param.icons>
+      <file>${PROJECT_ROOT}\DAI - Vera_resources\icon_48.png</file>
+      <file>${PROJECT_ROOT}\DAI - Vera_resources\icon_24.png</file>
+      <file>${PROJECT_ROOT}\DAI - Vera_resources\icon_16.png</file>
+    </param.icons>
+    <param.summary />
+    <param.description>Version Beta 1.0</param.description>
+    <param.screenshot>C:\Users\cmendes5\AppData\Local\Temp\tp168596df_b175_4c3d_8bda_6ca87fff95d0.png</param.screenshot>
+    <param.version>11.7</param.version>
+    <param.products.name />
+    <param.products.id />
+    <param.products.version />
+    <param.platforms />
+    <param.output>C:\Team\cmendes only</param.output>
+    <param.guid>37d074e5-e8a5-4644-be23-a3e5400ddd95</param.guid>
+    <unset>
+      <param.authnamewatermark />
+      <param.email />
+      <param.company />
+      <param.summary />
+      <param.products.name />
+      <param.products.id />
+      <param.products.version />
+      <param.platforms />
+    </unset>
+    <fileset.main>
+      <file>${PROJECT_ROOT}\DCTFFRGUI.mlapp</file>
+    </fileset.main>
+    <fileset.depfun>
+      <file>${PROJECT_ROOT}\bChangeViewMode.m</file>
+      <file>${PROJECT_ROOT}\BRANCHGUI.mlapp</file>
+      <file>${PROJECT_ROOT}\brChangeViewMode.m</file>
+      <file>${PROJECT_ROOT}\BREAKERGUI.mlapp</file>
+      <file>${PROJECT_ROOT}\buildPlot.m</file>
+      <file>${PROJECT_ROOT}\calculateFFR.m</file>
+      <file>${PROJECT_ROOT}\callCustomInputDialog.m</file>
+      <file>${PROJECT_ROOT}\captureScreen.m</file>
+      <file>${PROJECT_ROOT}\changeFontsTo.m</file>
+      <file>${PROJECT_ROOT}\changeViewMode.m</file>
+      <file>${PROJECT_ROOT}\convertDocxToPdf.m</file>
+      <file>${PROJECT_ROOT}\convertImagesToJpeg.m</file>
+      <file>${PROJECT_ROOT}\drawCurve.m</file>
+      <file>${PROJECT_ROOT}\drawFFRCurve.m</file>
+      <file>${PROJECT_ROOT}\exportCurves.m</file>
+      <file>${PROJECT_ROOT}\exportFFRCurve.m</file>
+      <file>${PROJECT_ROOT}\findBaseline.m</file>
+      <file>${PROJECT_ROOT}\fitModifiedGammaVariate.m</file>
+      <file>${PROJECT_ROOT}\generateDetailsReport.m</file>
+      <file>${PROJECT_ROOT}\generateFileName.m</file>
+      <file>${PROJECT_ROOT}\generateReport.m</file>
+      <file>${PROJECT_ROOT}\getAreaUnderCurve.m</file>
+      <file>${PROJECT_ROOT}\getBestSample.m</file>
+      <file>${PROJECT_ROOT}\getColoredPointForMarkedCoordinate.m</file>
+      <file>${PROJECT_ROOT}\getContour.m</file>
+      <file>${PROJECT_ROOT}\getConversionFactor.m</file>
+      <file>${PROJECT_ROOT}\getData.m</file>
+      <file>${PROJECT_ROOT}\getDicomInfoFromEnhancedDicomInfo.m</file>
+      <file>${PROJECT_ROOT}\getDistanceBetweenSlicesAB.m</file>
+      <file>${PROJECT_ROOT}\getFittedCurve.m</file>
+      <file>${PROJECT_ROOT}\getFourDImageSetBasedOnSliceLocation.m</file>
+      <file>${PROJECT_ROOT}\getInterpolatedCurve.m</file>
+      <file>${PROJECT_ROOT}\getInterpolatedSlice.m</file>
+      <file>${PROJECT_ROOT}\getJPEGVolumeFromDicomVolume.m</file>
+      <file>${PROJECT_ROOT}\getLabel.m</file>
+      <file>${PROJECT_ROOT}\getNewDicomInfoForInterpolatedSlices.m</file>
+      <file>${PROJECT_ROOT}\getNewTimePointInDuplicatedSlices.m</file>
+      <file>${PROJECT_ROOT}\getPlotID.m</file>
+      <file>${PROJECT_ROOT}\getPlotInterval.m</file>
+      <file>${PROJECT_ROOT}\getRelativeHeight.m</file>
+      <file>${PROJECT_ROOT}\getROI.m</file>
+      <file>${PROJECT_ROOT}\getROIOverlayed.m</file>
+      <file>${PROJECT_ROOT}\getSearchWindow.m</file>
+      <file>${PROJECT_ROOT}\getSingleTimeFromDoubleScanTime.m</file>
+      <file>${PROJECT_ROOT}\getSliderTicks.m</file>
+      <file>${PROJECT_ROOT}\getStartingPointOfRecirculationPhase.m</file>
+      <file>${PROJECT_ROOT}\getTimes.m</file>
+      <file>${PROJECT_ROOT}\getTimesInSeconds.m</file>
+      <file>${PROJECT_ROOT}\getTracerMass.m</file>
+      <file>${PROJECT_ROOT}\getTracerMassAtEverySideBranch.m</file>
+      <file>${PROJECT_ROOT}\getTracerMassAtSideBranch.m</file>
+      <file>${PROJECT_ROOT}\getTraining.m</file>
+      <file>${PROJECT_ROOT}\isByteSwapNeeded.m</file>
+      <file>${PROJECT_ROOT}\isSliceCombinationNeeded.m</file>
+      <file>${PROJECT_ROOT}\isVectorEmptyOrZero.m</file>
+      <file>${PROJECT_ROOT}\loadRoiFromJson.m</file>
+      <file>${PROJECT_ROOT}\loadTimeInfoAndApplyToCurrentCTPData.m</file>
+      <file>${PROJECT_ROOT}\logDAI.m</file>
+      <file>${PROJECT_ROOT}\readAndSplitCanonImages.m</file>
+      <file>${PROJECT_ROOT}\readAndSplitImages.m</file>
+      <file>${PROJECT_ROOT}\readAndSplitSiemensImages.m</file>
+      <file>${PROJECT_ROOT}\readAndUpdateHeaderFromGEFormattedImageFiles.m</file>
+      <file>${PROJECT_ROOT}\readDataFile.m</file>
+      <file>${PROJECT_ROOT}\readPreviousDataPointsFromFile.m</file>
+      <file>${PROJECT_ROOT}\readRegularCTAVolume.m</file>
+      <file>${PROJECT_ROOT}\readTimeInfoOnlyFromCTPImages.m</file>
+      <file>${PROJECT_ROOT}\readTimeInfoOnlyFromImages.m</file>
+      <file>${PROJECT_ROOT}\removeOlderLogFiles.m</file>
+      <file>${PROJECT_ROOT}\saveCoordiantes.m</file>
+      <file>${PROJECT_ROOT}\saveRoiAsJson.m</file>
+      <file>${PROJECT_ROOT}\saveScreen.m</file>
+      <file>${PROJECT_ROOT}\saveTimeInfo.m</file>
+      <file>${PROJECT_ROOT}\sChangeViewMode.m</file>
+      <file>${PROJECT_ROOT}\showPlot.m</file>
+      <file>${PROJECT_ROOT}\STENOSISGUI.mlapp</file>
+      <file>${PROJECT_ROOT}\subtractBaseline.m</file>
+      <file>${PROJECT_ROOT}\txt2csv.m</file>
+      <file>${PROJECT_ROOT}\updateVersion.m</file>
+      <file>${PROJECT_ROOT}\writeDicomVolume.m</file>
+      <file>${PROJECT_ROOT}\writeRegularDicomVolumeFromEnhancedCTA.m</file>
+    </fileset.depfun>
+    <fileset.resources>
+      <file>${PROJECT_ROOT}\dicom_dict_copy.txt</file>
+    </fileset.resources>
+    <fileset.package />
+    <build-deliverables>
+      <file location="C:\Team" name="cmendes only" optional="false">C:\Team\cmendes only</file>
+    </build-deliverables>
+    <workflow />
+    <matlab>
+      <root>C:\Program Files\MATLAB\R2023a</root>
+      <toolboxes>
+        <toolbox name="neuralnetwork" />
+      </toolboxes>
+      <toolbox>
+        <neuralnetwork>
+          <enabled>true</enabled>
+        </neuralnetwork>
+      </toolbox>
+    </matlab>
+    <platform>
+      <unix>false</unix>
+      <mac>false</mac>
+      <windows>true</windows>
+      <win2k>false</win2k>
+      <winxp>false</winxp>
+      <vista>false</vista>
+      <linux>false</linux>
+      <solaris>false</solaris>
+      <osver>10.0</osver>
+      <os32>false</os32>
+      <os64>true</os64>
+      <arch>win64</arch>
+      <matlab>true</matlab>
+    </platform>
+  </configuration>
+</deployment-project>

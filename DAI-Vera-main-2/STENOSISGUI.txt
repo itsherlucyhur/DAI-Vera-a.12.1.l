@@ -1,0 +1,1053 @@
+classdef STENOSISGUI < matlab.apps.AppBase
+
+    % Properties that correspond to app components
+    properties (Access = public)
+        DefineStenosisUIFigure          matlab.ui.Figure
+        MarkstenosisbetweenPrelesionandPostlesionSitesLabel  matlab.ui.control.Label
+        ExitLabel_5                     matlab.ui.control.Label
+        EditField_5                     matlab.ui.control.NumericEditField
+        EntryLabel_5                    matlab.ui.control.Label
+        NumberofbranchbetweenprelesionandstenosisEditField_5  matlab.ui.control.NumericEditField
+        NumberofbranchbetweenprelesionandstenosisEditField_5Label  matlab.ui.control.Label
+        ExitLabel_4                     matlab.ui.control.Label
+        EditField_4                     matlab.ui.control.NumericEditField
+        EntryLabel_4                    matlab.ui.control.Label
+        NumberofbranchbetweenprelesionandstenosisEditField_4  matlab.ui.control.NumericEditField
+        NumberofbranchbetweenprelesionandstenosisEditField_4Label  matlab.ui.control.Label
+        ExitLabel_3                     matlab.ui.control.Label
+        EditField_3                     matlab.ui.control.NumericEditField
+        EntryLabel_3                    matlab.ui.control.Label
+        NumberofbranchbetweenprelesionandstenosisEditField_3  matlab.ui.control.NumericEditField
+        NumberofbranchbetweenprelesionandstenosisEditField_3Label  matlab.ui.control.Label
+        ExitLabel_2                     matlab.ui.control.Label
+        EditField_2                     matlab.ui.control.NumericEditField
+        EntryLabel_2                    matlab.ui.control.Label
+        NumberofbranchbetweenprelesionandstenosisEditField_2  matlab.ui.control.NumericEditField
+        NumberofbranchbetweenprelesionandstenosisEditField_2Label  matlab.ui.control.Label
+        ExitLabel                       matlab.ui.control.Label
+        EntryLabel                      matlab.ui.control.Label
+        EditField                       matlab.ui.control.NumericEditField
+        NumberofbranchbetweenprelesionandstenosisEditField  matlab.ui.control.NumericEditField
+        NumberofbranchbetweenprelesionandstenosisEditFieldLabel  matlab.ui.control.Label
+        EnterButton                     matlab.ui.control.Button
+        ClearButton_5                   matlab.ui.control.Button
+        ExitLumenRadiuscmEditField_5    matlab.ui.control.NumericEditField
+        ExitLumenRadiuscmEditField_5Label  matlab.ui.control.Label
+        EntryLumenRadiuscmEditField_5   matlab.ui.control.NumericEditField
+        EntryLumenRadiuscmEditField_5Label  matlab.ui.control.Label
+        LumenNarrowingEditField_5       matlab.ui.control.NumericEditField
+        LumenNarrowingEditField_5Label  matlab.ui.control.Label
+        ExitSliceNumberEditField_5      matlab.ui.control.NumericEditField
+        ExitSliceNumberEditField_5Label  matlab.ui.control.Label
+        EntrySliceNumberEditField_5     matlab.ui.control.NumericEditField
+        EntrySliceNumberEditField_5Label  matlab.ui.control.Label
+        Stenosis5CheckBox               matlab.ui.control.CheckBox
+        ClearButton_4                   matlab.ui.control.Button
+        ExitLumenRadiuscmEditField_4    matlab.ui.control.NumericEditField
+        ExitLumenRadiuscmEditField_4Label  matlab.ui.control.Label
+        EntryLumenRadiuscmEditField_4   matlab.ui.control.NumericEditField
+        EntryLumenRadiuscmEditField_4Label  matlab.ui.control.Label
+        LumenNarrowingEditField_4       matlab.ui.control.NumericEditField
+        LumenNarrowingEditField_4Label  matlab.ui.control.Label
+        ExitSliceNumberEditField_4      matlab.ui.control.NumericEditField
+        ExitSliceNumberEditField_4Label  matlab.ui.control.Label
+        EntrySliceNumberEditField_4     matlab.ui.control.NumericEditField
+        EntrySliceNumberEditField_4Label  matlab.ui.control.Label
+        Stenosis4CheckBox               matlab.ui.control.CheckBox
+        ClearButton_3                   matlab.ui.control.Button
+        ExitLumenRadiuscmEditField_3    matlab.ui.control.NumericEditField
+        ExitLumenRadiuscmEditField_3Label  matlab.ui.control.Label
+        EntryLumenRadiuscmEditField_3   matlab.ui.control.NumericEditField
+        EntryLumenRadiuscmEditField_3Label  matlab.ui.control.Label
+        LumenNarrowingEditField_3       matlab.ui.control.NumericEditField
+        LumenNarrowingEditField_3Label  matlab.ui.control.Label
+        ExitSliceNumberEditField_3      matlab.ui.control.NumericEditField
+        ExitSliceNumberEditField_3Label  matlab.ui.control.Label
+        EntrySliceNumberEditField_3     matlab.ui.control.NumericEditField
+        EntrySliceNumberEditField_3Label  matlab.ui.control.Label
+        Stenosis3CheckBox               matlab.ui.control.CheckBox
+        ClearButton_2                   matlab.ui.control.Button
+        ExitLumenRadiuscmEditField_2    matlab.ui.control.NumericEditField
+        ExitLumenRadiuscmEditField_2Label  matlab.ui.control.Label
+        EntryLumenRadiuscmEditField_2   matlab.ui.control.NumericEditField
+        EntryLumenRadiuscmEditField_2Label  matlab.ui.control.Label
+        LumenNarrowingEditField_2       matlab.ui.control.NumericEditField
+        LumenNarrowingEditField_2Label  matlab.ui.control.Label
+        ExitSliceNumberEditField_2      matlab.ui.control.NumericEditField
+        ExitSliceNumberEditField_2Label  matlab.ui.control.Label
+        EntrySliceNumberEditField_2     matlab.ui.control.NumericEditField
+        EntrySliceNumberEditField_2Label  matlab.ui.control.Label
+        Stenosis2CheckBox               matlab.ui.control.CheckBox
+        ClearButton                     matlab.ui.control.Button
+        ExitLumenRadiuscmEditField      matlab.ui.control.NumericEditField
+        ExitLumenRadiuscmLabel          matlab.ui.control.Label
+        EntryLumenRadiuscmEditField     matlab.ui.control.NumericEditField
+        EntryLumenRadiuscmEditFieldLabel  matlab.ui.control.Label
+        LumenNarrowingEditField         matlab.ui.control.NumericEditField
+        LumenNarrowingEditFieldLabel    matlab.ui.control.Label
+        ExitSliceNumberEditField        matlab.ui.control.NumericEditField
+        ExitSliceNumberEditFieldLabel   matlab.ui.control.Label
+        EntrySliceNumberEditField       matlab.ui.control.NumericEditField
+        EntrySliceNumberEditFieldLabel  matlab.ui.control.Label
+        Stenosis1CheckBox               matlab.ui.control.CheckBox
+    end
+
+
+    properties (Access = private)
+        DCTFFRGUI;
+    end
+
+    events
+        AppClosedEvent;
+    end
+
+    properties (Access = public)
+        numberOfStenosis = 0;
+        plotToRemove = [];
+        colorBackgroundNormalMode = [0.94 0.94 0.94];
+        colorBackgroundDarkMode = [0.30 0.30 0.30];
+        colorTextFieldNormalMode = [1.0 1.0 1.0];
+        colorTextFieldDarkMode = [0.50 0.50 0.50];
+        colorRegularFontDarkMode = [1.0 1.0 1.0];
+        colorRegularFontNormalMode = [0.0 0.0 0.0];
+    end
+
+    methods (Access = public)
+
+        function deletePlotIDFromRemovalList(app, plotID)
+            app.plotToRemove = app.plotToRemove(app.plotToRemove ~= plotID);
+        end
+    end
+
+
+    % Callbacks that handle component events
+    methods (Access = private)
+
+        % Code that executes after component creation
+        function startupFcn(app, DCTFFRGUI)
+            app.DCTFFRGUI = DCTFFRGUI;
+            sChangeViewMode(app, app.DCTFFRGUI.viewMode);
+        end
+
+        % Button pushed function: ClearButton
+        function ClearButtonPushed(app, event)
+            app.ExitLumenRadiuscmEditField.Value = 0;
+            app.EntryLumenRadiuscmEditField.Value = 0;
+            app.LumenNarrowingEditField.Value = 0;
+            app.ExitSliceNumberEditField.Value = 0;
+            app.EntrySliceNumberEditField.Value = 0;
+            app.NumberofbranchbetweenprelesionandstenosisEditField.Value = 0;
+            app.EditField.Value = 0;
+            deletePlotIDFromRemovalList(app, 1);
+        end
+
+        % Value changed function: Stenosis1CheckBox
+        function Stenosis1CheckBoxValueChanged(app, event)
+            valuesPresentInTheEditFields = false;
+            if (app.EntrySliceNumberEditField.Value > 0 || ...
+                    app.ExitSliceNumberEditField.Value > 0 || ...
+                    app.LumenNarrowingEditField.Value > 0 || ...
+                    app.EntryLumenRadiuscmEditField.Value > 0 || ...
+                    app.ExitLumenRadiuscmEditField.Value > 0)
+                valuesPresentInTheEditFields = true;
+            end
+            value = app.Stenosis1CheckBox.Value;
+            if (value == true)
+                app.ExitLumenRadiuscmEditField.Enable = true;
+                app.EntryLumenRadiuscmEditField.Enable = true;
+                app.LumenNarrowingEditField.Enable = true;
+                app.ExitSliceNumberEditField.Enable = true;
+                app.EntrySliceNumberEditField.Enable = true;
+                app.ExitLumenRadiuscmLabel.Enable = true;
+                app.EntryLumenRadiuscmEditFieldLabel.Enable = true;
+                app.LumenNarrowingEditFieldLabel.Enable = true;
+                app.ExitSliceNumberEditFieldLabel.Enable = true;
+                app.EntrySliceNumberEditFieldLabel.Enable = true;
+                app.ClearButton.Enable = true;
+                app.NumberofbranchbetweenprelesionandstenosisEditFieldLabel.Enable = true;
+                app.NumberofbranchbetweenprelesionandstenosisEditField.Enable = true;
+                app.EditField.Enable = true;
+                app.EntryLabel.Enable = true;
+                app.ExitLabel.Enable = true;
+                app.numberOfStenosis = app.numberOfStenosis + 1;
+                if (valuesPresentInTheEditFields)
+                    deletePlotIDFromRemovalList(app, 1);
+                end
+            else
+                app.ExitLumenRadiuscmEditField.Enable = false;
+                app.EntryLumenRadiuscmEditField.Enable = false;
+                app.LumenNarrowingEditField.Enable = false;
+                app.ExitSliceNumberEditField.Enable = false;
+                app.EntrySliceNumberEditField.Enable = false;
+                app.ExitLumenRadiuscmLabel.Enable = false;
+                app.EntryLumenRadiuscmEditFieldLabel.Enable = false;
+                app.LumenNarrowingEditFieldLabel.Enable = false;
+                app.ExitSliceNumberEditFieldLabel.Enable = false;
+                app.EntrySliceNumberEditFieldLabel.Enable = false;
+                app.ClearButton.Enable = false;
+                app.NumberofbranchbetweenprelesionandstenosisEditFieldLabel.Enable = false;
+                app.NumberofbranchbetweenprelesionandstenosisEditField.Enable = false;
+                app.EditField.Enable = false;
+                app.EntryLabel.Enable = false;
+                app.ExitLabel.Enable = false;
+                app.numberOfStenosis = app.numberOfStenosis - 1;
+                if (valuesPresentInTheEditFields)
+                    app.plotToRemove(end + 1) = 1;
+                    app.plotToRemove= unique(app.plotToRemove);
+                end
+            end
+        end
+
+        % Button pushed function: EnterButton
+        function EnterButtonPushed(app, event)
+            getStenosisDataFromStenosisGUI(app.DCTFFRGUI);
+        end
+
+        % Value changed function: Stenosis2CheckBox
+        function Stenosis2CheckBoxValueChanged(app, event)
+            valuesPresentInTheEditFields = false;
+            if (app.EntrySliceNumberEditField_2.Value > 0 || ...
+                    app.ExitSliceNumberEditField_2.Value > 0 || ...
+                    app.LumenNarrowingEditField_2.Value > 0 || ...
+                    app.EntryLumenRadiuscmEditField_2.Value > 0 || ...
+                    app.ExitLumenRadiuscmEditField_2.Value > 0)
+                valuesPresentInTheEditFields = true;
+            end
+            value = app.Stenosis2CheckBox.Value;
+            if (value == true)
+                app.ExitLumenRadiuscmEditField_2.Enable = true;
+                app.EntryLumenRadiuscmEditField_2.Enable = true;
+                app.LumenNarrowingEditField_2.Enable = true;
+                app.ExitSliceNumberEditField_2.Enable = true;
+                app.EntrySliceNumberEditField_2.Enable = true;
+                app.ExitLumenRadiuscmEditField_2Label.Enable = true;
+                app.EntryLumenRadiuscmEditField_2Label.Enable = true;
+                app.LumenNarrowingEditField_2Label.Enable = true;
+                app.ExitSliceNumberEditField_2Label.Enable = true;
+                app.EntrySliceNumberEditField_2Label.Enable = true;
+                app.ClearButton_2.Enable = true;
+                app.NumberofbranchbetweenprelesionandstenosisEditField_2Label.Enable = true;
+                app.NumberofbranchbetweenprelesionandstenosisEditField_2.Enable = true;
+                app.EditField_2.Enable = true;
+                app.EntryLabel_2.Enable = true;
+                app.ExitLabel_2.Enable = true;
+                app.numberOfStenosis = app.numberOfStenosis + 1;
+                if (valuesPresentInTheEditFields)
+                    deletePlotIDFromRemovalList(app, 2);
+                end
+            else
+                app.ExitLumenRadiuscmEditField_2.Enable = false;
+                app.EntryLumenRadiuscmEditField_2.Enable = false;
+                app.LumenNarrowingEditField_2.Enable = false;
+                app.ExitSliceNumberEditField_2.Enable = false;
+                app.EntrySliceNumberEditField_2.Enable = false;
+                app.ExitLumenRadiuscmEditField_2Label.Enable = false;
+                app.EntryLumenRadiuscmEditField_2Label.Enable = false;
+                app.LumenNarrowingEditField_2Label.Enable = false;
+                app.ExitSliceNumberEditField_2Label.Enable = false;
+                app.EntrySliceNumberEditField_2Label.Enable = false;
+                app.ClearButton_2.Enable = false;
+                app.NumberofbranchbetweenprelesionandstenosisEditField_2Label.Enable = false;
+                app.NumberofbranchbetweenprelesionandstenosisEditField_2.Enable = false;
+                app.EditField_2.Enable = false;
+                app.EntryLabel_2.Enable = false;
+                app.ExitLabel_2.Enable = false;
+                app.numberOfStenosis = app.numberOfStenosis - 1;
+                if (valuesPresentInTheEditFields)
+                    app.plotToRemove(end + 1) = 2;
+                    app.plotToRemove= unique(app.plotToRemove);
+                end
+            end
+        end
+
+        % Button pushed function: ClearButton_2
+        function ClearButton_2Pushed(app, event)
+            app.ExitLumenRadiuscmEditField_2.Value = 0;
+            app.EntryLumenRadiuscmEditField_2.Value = 0;
+            app.LumenNarrowingEditField_2.Value = 0;
+            app.ExitSliceNumberEditField_2.Value = 0;
+            app.EntrySliceNumberEditField_2.Value = 0;
+            app.NumberofbranchbetweenprelesionandstenosisEditField_2.Value = 0;
+            app.EditField_2.Value = 0;
+            deletePlotIDFromRemovalList(app, 2);
+        end
+
+        % Callback function
+        function EnterButton_2Pushed(app, event)
+            % getStenosisDataFromStenosisGUI(app.DCTFFRGUI);
+            % delete(app);
+        end
+
+        % Value changed function: Stenosis3CheckBox
+        function Stenosis3CheckBoxValueChanged(app, event)
+            valuesPresentInTheEditFields = false;
+            if (app.EntrySliceNumberEditField_3.Value > 0 || ...
+                    app.ExitSliceNumberEditField_3.Value > 0 || ...
+                    app.LumenNarrowingEditField_3.Value > 0 || ...
+                    app.EntryLumenRadiuscmEditField_3.Value > 0 || ...
+                    app.ExitLumenRadiuscmEditField_3.Value > 0)
+                valuesPresentInTheEditFields = true;
+            end
+            value = app.Stenosis3CheckBox.Value;
+            if (value == true)
+                app.ExitLumenRadiuscmEditField_3.Enable = true;
+                app.EntryLumenRadiuscmEditField_3.Enable = true;
+                app.LumenNarrowingEditField_3.Enable = true;
+                app.ExitSliceNumberEditField_3.Enable = true;
+                app.EntrySliceNumberEditField_3.Enable = true;
+                app.ExitLumenRadiuscmEditField_3Label.Enable = true;
+                app.EntryLumenRadiuscmEditField_3Label.Enable = true;
+                app.LumenNarrowingEditField_3Label.Enable = true;
+                app.ExitSliceNumberEditField_3Label.Enable = true;
+                app.EntrySliceNumberEditField_3Label.Enable = true;
+                app.ClearButton_3.Enable = true;
+                app.NumberofbranchbetweenprelesionandstenosisEditField_3Label.Enable = true;
+                app.NumberofbranchbetweenprelesionandstenosisEditField_3.Enable = true;
+                app.EditField_3.Enable = true;
+                app.EntryLabel_3.Enable = true;
+                app.ExitLabel_3.Enable = true;
+                app.numberOfStenosis = app.numberOfStenosis + 1;
+                if (valuesPresentInTheEditFields)
+                    deletePlotIDFromRemovalList(app, 3);
+                end
+            else
+                app.ExitLumenRadiuscmEditField_3.Enable = false;
+                app.EntryLumenRadiuscmEditField_3.Enable = false;
+                app.LumenNarrowingEditField_3.Enable = false;
+                app.ExitSliceNumberEditField_3.Enable = false;
+                app.EntrySliceNumberEditField_3.Enable = false;
+                app.ExitLumenRadiuscmEditField_3Label.Enable = false;
+                app.EntryLumenRadiuscmEditField_3Label.Enable = false;
+                app.LumenNarrowingEditField_3Label.Enable = false;
+                app.ExitSliceNumberEditField_3Label.Enable = false;
+                app.EntrySliceNumberEditField_3Label.Enable = false;
+                app.ClearButton_3.Enable = false;
+                app.NumberofbranchbetweenprelesionandstenosisEditField_3Label.Enable = false;
+                app.NumberofbranchbetweenprelesionandstenosisEditField_3.Enable = false;
+                app.EditField_3.Enable = false;
+                app.EntryLabel_3.Enable = false;
+                app.ExitLabel_3.Enable = false;
+                app.numberOfStenosis = app.numberOfStenosis - 1;
+                if (valuesPresentInTheEditFields)
+                    app.plotToRemove(end + 1) = 3;
+                    app.plotToRemove= unique(app.plotToRemove);
+                end
+            end
+        end
+
+        % Button pushed function: ClearButton_3
+        function ClearButton_3Pushed(app, event)
+            app.ExitLumenRadiuscmEditField_3.Value = 0;
+            app.EntryLumenRadiuscmEditField_3.Value = 0;
+            app.LumenNarrowingEditField_3.Value = 0;
+            app.ExitSliceNumberEditField_3.Value = 0;
+            app.EntrySliceNumberEditField_3.Value = 0;
+            app.NumberofbranchbetweenprelesionandstenosisEditField_3.Value = 0;
+            app.EditField_3.Value = 0;
+            deletePlotIDFromRemovalList(app, 3);
+        end
+
+        % Value changed function: Stenosis4CheckBox
+        function Stenosis4CheckBoxValueChanged(app, event)
+            valuesPresentInTheEditFields = false;
+            if (app.EntrySliceNumberEditField_4.Value > 0 || ...
+                    app.ExitSliceNumberEditField_4.Value > 0 || ...
+                    app.LumenNarrowingEditField_4.Value > 0 || ...
+                    app.EntryLumenRadiuscmEditField_4.Value > 0 || ...
+                    app.ExitLumenRadiuscmEditField_4.Value > 0)
+                valuesPresentInTheEditFields = true;
+            end
+            value = app.Stenosis4CheckBox.Value;
+            if (value == true)
+                app.ExitLumenRadiuscmEditField_4.Enable = true;
+                app.EntryLumenRadiuscmEditField_4.Enable = true;
+                app.LumenNarrowingEditField_4.Enable = true;
+                app.ExitSliceNumberEditField_4.Enable = true;
+                app.EntrySliceNumberEditField_4.Enable = true;
+                app.ExitLumenRadiuscmEditField_4Label.Enable = true;
+                app.EntryLumenRadiuscmEditField_4Label.Enable = true;
+                app.LumenNarrowingEditField_4Label.Enable = true;
+                app.ExitSliceNumberEditField_4Label.Enable = true;
+                app.EntrySliceNumberEditField_4Label.Enable = true;
+                app.ClearButton_4.Enable = true;
+                app.NumberofbranchbetweenprelesionandstenosisEditField_4Label.Enable = true;
+                app.NumberofbranchbetweenprelesionandstenosisEditField_4.Enable = true;
+                app.EditField_4.Enable = true;
+                app.EntryLabel_4.Enable = true;
+                app.ExitLabel_4.Enable = true;
+                app.numberOfStenosis = app.numberOfStenosis + 1;
+                if (valuesPresentInTheEditFields)
+                    deletePlotIDFromRemovalList(app, 4);
+                end
+            else
+                app.ExitLumenRadiuscmEditField_4.Enable = false;
+                app.EntryLumenRadiuscmEditField_4.Enable = false;
+                app.LumenNarrowingEditField_4.Enable = false;
+                app.ExitSliceNumberEditField_4.Enable = false;
+                app.EntrySliceNumberEditField_4.Enable = false;
+                app.ExitLumenRadiuscmEditField_4Label.Enable = false;
+                app.EntryLumenRadiuscmEditField_4Label.Enable = false;
+                app.LumenNarrowingEditField_4Label.Enable = false;
+                app.ExitSliceNumberEditField_4Label.Enable = false;
+                app.EntrySliceNumberEditField_4Label.Enable = false;
+                app.ClearButton_4.Enable = false;
+                app.NumberofbranchbetweenprelesionandstenosisEditField_4Label.Enable = false;
+                app.NumberofbranchbetweenprelesionandstenosisEditField_4.Enable = false;
+                app.EditField_4.Enable = false;
+                app.EntryLabel_4.Enable = false;
+                app.ExitLabel_4.Enable = false;
+                app.numberOfStenosis = app.numberOfStenosis - 1;
+                if (valuesPresentInTheEditFields)
+                    app.plotToRemove(end + 1) = 4;
+                    app.plotToRemove= unique(app.plotToRemove);
+                end
+            end
+        end
+
+        % Button pushed function: ClearButton_4
+        function ClearButton_4Pushed(app, event)
+            app.ExitLumenRadiuscmEditField_4.Value = 0;
+            app.EntryLumenRadiuscmEditField_4.Value = 0;
+            app.LumenNarrowingEditField_4.Value = 0;
+            app.ExitSliceNumberEditField_4.Value = 0;
+            app.EntrySliceNumberEditField_4.Value = 0;
+            app.NumberofbranchbetweenprelesionandstenosisEditField_4.Value = 0;
+            app.EditField_4.Value = 0;
+            deletePlotIDFromRemovalList(app, 4);
+        end
+
+        % Value changed function: Stenosis5CheckBox
+        function Stenosis5CheckBoxValueChanged(app, event)
+            valuesPresentInTheEditFields = false;
+            if (app.EntrySliceNumberEditField_5.Value > 0 || ...
+                    app.ExitSliceNumberEditField_5.Value > 0 || ...
+                    app.LumenNarrowingEditField_5.Value > 0 || ...
+                    app.EntryLumenRadiuscmEditField_5.Value > 0 || ...
+                    app.ExitLumenRadiuscmEditField_5.Value > 0)
+                valuesPresentInTheEditFields = true;
+            end
+            value = app.Stenosis5CheckBox.Value;
+            if (value == true)
+                app.ExitLumenRadiuscmEditField_5.Enable = true;
+                app.EntryLumenRadiuscmEditField_5.Enable = true;
+                app.LumenNarrowingEditField_5.Enable = true;
+                app.ExitSliceNumberEditField_5.Enable = true;
+                app.EntrySliceNumberEditField_5.Enable = true;
+                app.ExitLumenRadiuscmEditField_5Label.Enable = true;
+                app.EntryLumenRadiuscmEditField_5Label.Enable = true;
+                app.LumenNarrowingEditField_5Label.Enable = true;
+                app.ExitSliceNumberEditField_5Label.Enable = true;
+                app.EntrySliceNumberEditField_5Label.Enable = true;
+                app.ClearButton_5.Enable = true;
+                app.NumberofbranchbetweenprelesionandstenosisEditField_5Label.Enable = true;
+                app.NumberofbranchbetweenprelesionandstenosisEditField_5.Enable = true;
+                app.EditField_5.Enable = true;
+                app.EntryLabel_5.Enable = true;
+                app.ExitLabel_5.Enable = true;
+                app.numberOfStenosis = app.numberOfStenosis + 1;
+                if (valuesPresentInTheEditFields)
+                    deletePlotIDFromRemovalList(app, 5);
+                end
+            else
+                app.ExitLumenRadiuscmEditField_5.Enable = false;
+                app.EntryLumenRadiuscmEditField_5.Enable = false;
+                app.LumenNarrowingEditField_5.Enable = false;
+                app.ExitSliceNumberEditField_5.Enable = false;
+                app.EntrySliceNumberEditField_5.Enable = false;
+                app.ExitLumenRadiuscmEditField_5Label.Enable = false;
+                app.EntryLumenRadiuscmEditField_5Label.Enable = false;
+                app.LumenNarrowingEditField_5Label.Enable = false;
+                app.ExitSliceNumberEditField_5Label.Enable = false;
+                app.EntrySliceNumberEditField_5Label.Enable = false;
+                app.ClearButton_5.Enable = false;
+                app.NumberofbranchbetweenprelesionandstenosisEditField_5Label.Enable = false;
+                app.NumberofbranchbetweenprelesionandstenosisEditField_5.Enable = false;
+                app.EditField_5.Enable = false;
+                app.EntryLabel_5.Enable = false;
+                app.ExitLabel_5.Enable = false;
+                app.numberOfStenosis = app.numberOfStenosis - 1;
+                if (valuesPresentInTheEditFields)
+                    app.plotToRemove(end + 1) = 5;
+                    app.plotToRemove= unique(app.plotToRemove);
+                end
+            end
+        end
+
+        % Button pushed function: ClearButton_5
+        function ClearButton_5Pushed(app, event)
+            app.ExitLumenRadiuscmEditField_5.Value = 0;
+            app.EntryLumenRadiuscmEditField_5.Value = 0;
+            app.LumenNarrowingEditField_5.Value = 0;
+            app.ExitSliceNumberEditField_5.Value = 0;
+            app.EntrySliceNumberEditField_5.Value = 0;
+            app.NumberofbranchbetweenprelesionandstenosisEditField_5.Value = 0;
+            app.EditField_5.Value = 0;
+            deletePlotIDFromRemovalList(app, 5);
+        end
+
+        % Callback function
+        function EnterButton_3Pushed(app, event)
+            % getStenosisDataFromStenosisGUI(app.DCTFFRGUI);
+            % delete(app);
+        end
+
+        % Callback function
+        function EnterButton_4Pushed(app, event)
+            % getStenosisDataFromStenosisGUI(app.DCTFFRGUI);
+            % delete(app);
+        end
+
+        % Callback function
+        function EnterButton_5Pushed(app, event)
+            % getStenosisDataFromStenosisGUI(app.DCTFFRGUI);
+            % delete(app);
+        end
+
+        % Close request function: DefineStenosisUIFigure
+        function DefineStenosisUIFigureCloseRequest(app, event)
+            notify(app, 'AppClosedEvent');
+            delete(app);
+        end
+    end
+
+    % Component initialization
+    methods (Access = private)
+
+        % Create UIFigure and components
+        function createComponents(app)
+
+            % Create DefineStenosisUIFigure and hide until all components are created
+            app.DefineStenosisUIFigure = uifigure('Visible', 'off');
+            app.DefineStenosisUIFigure.Position = [100 100 1081 331];
+            app.DefineStenosisUIFigure.Name = 'Define Stenosis';
+            app.DefineStenosisUIFigure.CloseRequestFcn = createCallbackFcn(app, @DefineStenosisUIFigureCloseRequest, true);
+
+            % Create Stenosis1CheckBox
+            app.Stenosis1CheckBox = uicheckbox(app.DefineStenosisUIFigure);
+            app.Stenosis1CheckBox.ValueChangedFcn = createCallbackFcn(app, @Stenosis1CheckBoxValueChanged, true);
+            app.Stenosis1CheckBox.Text = 'Stenosis 1';
+            app.Stenosis1CheckBox.Position = [18 265 78 22];
+
+            % Create EntrySliceNumberEditFieldLabel
+            app.EntrySliceNumberEditFieldLabel = uilabel(app.DefineStenosisUIFigure);
+            app.EntrySliceNumberEditFieldLabel.Enable = 'off';
+            app.EntrySliceNumberEditFieldLabel.Position = [19 231 109 22];
+            app.EntrySliceNumberEditFieldLabel.Text = 'Entry Slice Number';
+
+            % Create EntrySliceNumberEditField
+            app.EntrySliceNumberEditField = uieditfield(app.DefineStenosisUIFigure, 'numeric');
+            app.EntrySliceNumberEditField.Enable = 'off';
+            app.EntrySliceNumberEditField.Position = [170 231 44 22];
+
+            % Create ExitSliceNumberEditFieldLabel
+            app.ExitSliceNumberEditFieldLabel = uilabel(app.DefineStenosisUIFigure);
+            app.ExitSliceNumberEditFieldLabel.Enable = 'off';
+            app.ExitSliceNumberEditFieldLabel.Position = [19 199 101 22];
+            app.ExitSliceNumberEditFieldLabel.Text = 'Exit Slice Number';
+
+            % Create ExitSliceNumberEditField
+            app.ExitSliceNumberEditField = uieditfield(app.DefineStenosisUIFigure, 'numeric');
+            app.ExitSliceNumberEditField.Enable = 'off';
+            app.ExitSliceNumberEditField.Position = [170 199 44 22];
+
+            % Create LumenNarrowingEditFieldLabel
+            app.LumenNarrowingEditFieldLabel = uilabel(app.DefineStenosisUIFigure);
+            app.LumenNarrowingEditFieldLabel.Enable = 'off';
+            app.LumenNarrowingEditFieldLabel.Position = [18 166 122 22];
+            app.LumenNarrowingEditFieldLabel.Text = 'Lumen Narrowing (%)';
+
+            % Create LumenNarrowingEditField
+            app.LumenNarrowingEditField = uieditfield(app.DefineStenosisUIFigure, 'numeric');
+            app.LumenNarrowingEditField.Enable = 'off';
+            app.LumenNarrowingEditField.Position = [170 166 44 22];
+
+            % Create EntryLumenRadiuscmEditFieldLabel
+            app.EntryLumenRadiuscmEditFieldLabel = uilabel(app.DefineStenosisUIFigure);
+            app.EntryLumenRadiuscmEditFieldLabel.Enable = 'off';
+            app.EntryLumenRadiuscmEditFieldLabel.Position = [18 136 142 22];
+            app.EntryLumenRadiuscmEditFieldLabel.Text = 'Entry Lumen Radius (cm)';
+
+            % Create EntryLumenRadiuscmEditField
+            app.EntryLumenRadiuscmEditField = uieditfield(app.DefineStenosisUIFigure, 'numeric');
+            app.EntryLumenRadiuscmEditField.Enable = 'off';
+            app.EntryLumenRadiuscmEditField.Position = [170 136 44 22];
+
+            % Create ExitLumenRadiuscmLabel
+            app.ExitLumenRadiuscmLabel = uilabel(app.DefineStenosisUIFigure);
+            app.ExitLumenRadiuscmLabel.Enable = 'off';
+            app.ExitLumenRadiuscmLabel.Position = [18 104 134 22];
+            app.ExitLumenRadiuscmLabel.Text = 'Exit Lumen Radius (cm)';
+
+            % Create ExitLumenRadiuscmEditField
+            app.ExitLumenRadiuscmEditField = uieditfield(app.DefineStenosisUIFigure, 'numeric');
+            app.ExitLumenRadiuscmEditField.Enable = 'off';
+            app.ExitLumenRadiuscmEditField.Position = [170 104 44 22];
+
+            % Create ClearButton
+            app.ClearButton = uibutton(app.DefineStenosisUIFigure, 'push');
+            app.ClearButton.ButtonPushedFcn = createCallbackFcn(app, @ClearButtonPushed, true);
+            app.ClearButton.Enable = 'off';
+            app.ClearButton.Visible = 'off';
+            app.ClearButton.Position = [167 265 44 22];
+            app.ClearButton.Text = 'Clear';
+
+            % Create Stenosis2CheckBox
+            app.Stenosis2CheckBox = uicheckbox(app.DefineStenosisUIFigure);
+            app.Stenosis2CheckBox.ValueChangedFcn = createCallbackFcn(app, @Stenosis2CheckBoxValueChanged, true);
+            app.Stenosis2CheckBox.Text = 'Stenosis 2';
+            app.Stenosis2CheckBox.Position = [232 265 78 22];
+
+            % Create EntrySliceNumberEditField_2Label
+            app.EntrySliceNumberEditField_2Label = uilabel(app.DefineStenosisUIFigure);
+            app.EntrySliceNumberEditField_2Label.Enable = 'off';
+            app.EntrySliceNumberEditField_2Label.Position = [233 231 109 22];
+            app.EntrySliceNumberEditField_2Label.Text = 'Entry Slice Number';
+
+            % Create EntrySliceNumberEditField_2
+            app.EntrySliceNumberEditField_2 = uieditfield(app.DefineStenosisUIFigure, 'numeric');
+            app.EntrySliceNumberEditField_2.Enable = 'off';
+            app.EntrySliceNumberEditField_2.Position = [384 231 44 22];
+
+            % Create ExitSliceNumberEditField_2Label
+            app.ExitSliceNumberEditField_2Label = uilabel(app.DefineStenosisUIFigure);
+            app.ExitSliceNumberEditField_2Label.Enable = 'off';
+            app.ExitSliceNumberEditField_2Label.Position = [232 199 101 22];
+            app.ExitSliceNumberEditField_2Label.Text = 'Exit Slice Number';
+
+            % Create ExitSliceNumberEditField_2
+            app.ExitSliceNumberEditField_2 = uieditfield(app.DefineStenosisUIFigure, 'numeric');
+            app.ExitSliceNumberEditField_2.Enable = 'off';
+            app.ExitSliceNumberEditField_2.Position = [383 199 44 22];
+
+            % Create LumenNarrowingEditField_2Label
+            app.LumenNarrowingEditField_2Label = uilabel(app.DefineStenosisUIFigure);
+            app.LumenNarrowingEditField_2Label.Enable = 'off';
+            app.LumenNarrowingEditField_2Label.Position = [232 166 122 22];
+            app.LumenNarrowingEditField_2Label.Text = 'Lumen Narrowing (%)';
+
+            % Create LumenNarrowingEditField_2
+            app.LumenNarrowingEditField_2 = uieditfield(app.DefineStenosisUIFigure, 'numeric');
+            app.LumenNarrowingEditField_2.Enable = 'off';
+            app.LumenNarrowingEditField_2.Position = [383 166 44 22];
+
+            % Create EntryLumenRadiuscmEditField_2Label
+            app.EntryLumenRadiuscmEditField_2Label = uilabel(app.DefineStenosisUIFigure);
+            app.EntryLumenRadiuscmEditField_2Label.Enable = 'off';
+            app.EntryLumenRadiuscmEditField_2Label.Position = [232 136 142 22];
+            app.EntryLumenRadiuscmEditField_2Label.Text = 'Entry Lumen Radius (cm)';
+
+            % Create EntryLumenRadiuscmEditField_2
+            app.EntryLumenRadiuscmEditField_2 = uieditfield(app.DefineStenosisUIFigure, 'numeric');
+            app.EntryLumenRadiuscmEditField_2.Enable = 'off';
+            app.EntryLumenRadiuscmEditField_2.Position = [383 136 44 22];
+
+            % Create ExitLumenRadiuscmEditField_2Label
+            app.ExitLumenRadiuscmEditField_2Label = uilabel(app.DefineStenosisUIFigure);
+            app.ExitLumenRadiuscmEditField_2Label.Enable = 'off';
+            app.ExitLumenRadiuscmEditField_2Label.Position = [232 104 134 22];
+            app.ExitLumenRadiuscmEditField_2Label.Text = 'Exit Lumen Radius (cm)';
+
+            % Create ExitLumenRadiuscmEditField_2
+            app.ExitLumenRadiuscmEditField_2 = uieditfield(app.DefineStenosisUIFigure, 'numeric');
+            app.ExitLumenRadiuscmEditField_2.Enable = 'off';
+            app.ExitLumenRadiuscmEditField_2.Position = [383 104 44 22];
+
+            % Create ClearButton_2
+            app.ClearButton_2 = uibutton(app.DefineStenosisUIFigure, 'push');
+            app.ClearButton_2.ButtonPushedFcn = createCallbackFcn(app, @ClearButton_2Pushed, true);
+            app.ClearButton_2.Enable = 'off';
+            app.ClearButton_2.Visible = 'off';
+            app.ClearButton_2.Position = [382 265 44 22];
+            app.ClearButton_2.Text = 'Clear';
+
+            % Create Stenosis3CheckBox
+            app.Stenosis3CheckBox = uicheckbox(app.DefineStenosisUIFigure);
+            app.Stenosis3CheckBox.ValueChangedFcn = createCallbackFcn(app, @Stenosis3CheckBoxValueChanged, true);
+            app.Stenosis3CheckBox.Text = 'Stenosis 3';
+            app.Stenosis3CheckBox.Position = [448 265 78 22];
+
+            % Create EntrySliceNumberEditField_3Label
+            app.EntrySliceNumberEditField_3Label = uilabel(app.DefineStenosisUIFigure);
+            app.EntrySliceNumberEditField_3Label.Enable = 'off';
+            app.EntrySliceNumberEditField_3Label.Position = [448 231 109 22];
+            app.EntrySliceNumberEditField_3Label.Text = 'Entry Slice Number';
+
+            % Create EntrySliceNumberEditField_3
+            app.EntrySliceNumberEditField_3 = uieditfield(app.DefineStenosisUIFigure, 'numeric');
+            app.EntrySliceNumberEditField_3.Enable = 'off';
+            app.EntrySliceNumberEditField_3.Position = [599 231 44 22];
+
+            % Create ExitSliceNumberEditField_3Label
+            app.ExitSliceNumberEditField_3Label = uilabel(app.DefineStenosisUIFigure);
+            app.ExitSliceNumberEditField_3Label.Enable = 'off';
+            app.ExitSliceNumberEditField_3Label.Position = [448 199 101 22];
+            app.ExitSliceNumberEditField_3Label.Text = 'Exit Slice Number';
+
+            % Create ExitSliceNumberEditField_3
+            app.ExitSliceNumberEditField_3 = uieditfield(app.DefineStenosisUIFigure, 'numeric');
+            app.ExitSliceNumberEditField_3.Enable = 'off';
+            app.ExitSliceNumberEditField_3.Position = [599 199 44 22];
+
+            % Create LumenNarrowingEditField_3Label
+            app.LumenNarrowingEditField_3Label = uilabel(app.DefineStenosisUIFigure);
+            app.LumenNarrowingEditField_3Label.Enable = 'off';
+            app.LumenNarrowingEditField_3Label.Position = [448 166 122 22];
+            app.LumenNarrowingEditField_3Label.Text = 'Lumen Narrowing (%)';
+
+            % Create LumenNarrowingEditField_3
+            app.LumenNarrowingEditField_3 = uieditfield(app.DefineStenosisUIFigure, 'numeric');
+            app.LumenNarrowingEditField_3.Enable = 'off';
+            app.LumenNarrowingEditField_3.Position = [599 166 44 22];
+
+            % Create EntryLumenRadiuscmEditField_3Label
+            app.EntryLumenRadiuscmEditField_3Label = uilabel(app.DefineStenosisUIFigure);
+            app.EntryLumenRadiuscmEditField_3Label.Enable = 'off';
+            app.EntryLumenRadiuscmEditField_3Label.Position = [448 136 142 22];
+            app.EntryLumenRadiuscmEditField_3Label.Text = 'Entry Lumen Radius (cm)';
+
+            % Create EntryLumenRadiuscmEditField_3
+            app.EntryLumenRadiuscmEditField_3 = uieditfield(app.DefineStenosisUIFigure, 'numeric');
+            app.EntryLumenRadiuscmEditField_3.Enable = 'off';
+            app.EntryLumenRadiuscmEditField_3.Position = [599 136 44 22];
+
+            % Create ExitLumenRadiuscmEditField_3Label
+            app.ExitLumenRadiuscmEditField_3Label = uilabel(app.DefineStenosisUIFigure);
+            app.ExitLumenRadiuscmEditField_3Label.Enable = 'off';
+            app.ExitLumenRadiuscmEditField_3Label.Position = [448 104 134 22];
+            app.ExitLumenRadiuscmEditField_3Label.Text = 'Exit Lumen Radius (cm)';
+
+            % Create ExitLumenRadiuscmEditField_3
+            app.ExitLumenRadiuscmEditField_3 = uieditfield(app.DefineStenosisUIFigure, 'numeric');
+            app.ExitLumenRadiuscmEditField_3.Enable = 'off';
+            app.ExitLumenRadiuscmEditField_3.Position = [599 104 44 22];
+
+            % Create ClearButton_3
+            app.ClearButton_3 = uibutton(app.DefineStenosisUIFigure, 'push');
+            app.ClearButton_3.ButtonPushedFcn = createCallbackFcn(app, @ClearButton_3Pushed, true);
+            app.ClearButton_3.Enable = 'off';
+            app.ClearButton_3.Visible = 'off';
+            app.ClearButton_3.Position = [597 265 44 22];
+            app.ClearButton_3.Text = 'Clear';
+
+            % Create Stenosis4CheckBox
+            app.Stenosis4CheckBox = uicheckbox(app.DefineStenosisUIFigure);
+            app.Stenosis4CheckBox.ValueChangedFcn = createCallbackFcn(app, @Stenosis4CheckBoxValueChanged, true);
+            app.Stenosis4CheckBox.Text = 'Stenosis 4';
+            app.Stenosis4CheckBox.Position = [664 265 78 22];
+
+            % Create EntrySliceNumberEditField_4Label
+            app.EntrySliceNumberEditField_4Label = uilabel(app.DefineStenosisUIFigure);
+            app.EntrySliceNumberEditField_4Label.Enable = 'off';
+            app.EntrySliceNumberEditField_4Label.Position = [664 231 109 22];
+            app.EntrySliceNumberEditField_4Label.Text = 'Entry Slice Number';
+
+            % Create EntrySliceNumberEditField_4
+            app.EntrySliceNumberEditField_4 = uieditfield(app.DefineStenosisUIFigure, 'numeric');
+            app.EntrySliceNumberEditField_4.Enable = 'off';
+            app.EntrySliceNumberEditField_4.Position = [815 231 44 22];
+
+            % Create ExitSliceNumberEditField_4Label
+            app.ExitSliceNumberEditField_4Label = uilabel(app.DefineStenosisUIFigure);
+            app.ExitSliceNumberEditField_4Label.Enable = 'off';
+            app.ExitSliceNumberEditField_4Label.Position = [664 199 101 22];
+            app.ExitSliceNumberEditField_4Label.Text = 'Exit Slice Number';
+
+            % Create ExitSliceNumberEditField_4
+            app.ExitSliceNumberEditField_4 = uieditfield(app.DefineStenosisUIFigure, 'numeric');
+            app.ExitSliceNumberEditField_4.Enable = 'off';
+            app.ExitSliceNumberEditField_4.Position = [815 199 44 22];
+
+            % Create LumenNarrowingEditField_4Label
+            app.LumenNarrowingEditField_4Label = uilabel(app.DefineStenosisUIFigure);
+            app.LumenNarrowingEditField_4Label.Enable = 'off';
+            app.LumenNarrowingEditField_4Label.Position = [664 166 122 22];
+            app.LumenNarrowingEditField_4Label.Text = 'Lumen Narrowing (%)';
+
+            % Create LumenNarrowingEditField_4
+            app.LumenNarrowingEditField_4 = uieditfield(app.DefineStenosisUIFigure, 'numeric');
+            app.LumenNarrowingEditField_4.Enable = 'off';
+            app.LumenNarrowingEditField_4.Position = [815 166 44 22];
+
+            % Create EntryLumenRadiuscmEditField_4Label
+            app.EntryLumenRadiuscmEditField_4Label = uilabel(app.DefineStenosisUIFigure);
+            app.EntryLumenRadiuscmEditField_4Label.Enable = 'off';
+            app.EntryLumenRadiuscmEditField_4Label.Position = [664 136 142 22];
+            app.EntryLumenRadiuscmEditField_4Label.Text = 'Entry Lumen Radius (cm)';
+
+            % Create EntryLumenRadiuscmEditField_4
+            app.EntryLumenRadiuscmEditField_4 = uieditfield(app.DefineStenosisUIFigure, 'numeric');
+            app.EntryLumenRadiuscmEditField_4.Enable = 'off';
+            app.EntryLumenRadiuscmEditField_4.Position = [815 136 44 22];
+
+            % Create ExitLumenRadiuscmEditField_4Label
+            app.ExitLumenRadiuscmEditField_4Label = uilabel(app.DefineStenosisUIFigure);
+            app.ExitLumenRadiuscmEditField_4Label.Enable = 'off';
+            app.ExitLumenRadiuscmEditField_4Label.Position = [664 104 134 22];
+            app.ExitLumenRadiuscmEditField_4Label.Text = 'Exit Lumen Radius (cm)';
+
+            % Create ExitLumenRadiuscmEditField_4
+            app.ExitLumenRadiuscmEditField_4 = uieditfield(app.DefineStenosisUIFigure, 'numeric');
+            app.ExitLumenRadiuscmEditField_4.Enable = 'off';
+            app.ExitLumenRadiuscmEditField_4.Position = [815 104 44 22];
+
+            % Create ClearButton_4
+            app.ClearButton_4 = uibutton(app.DefineStenosisUIFigure, 'push');
+            app.ClearButton_4.ButtonPushedFcn = createCallbackFcn(app, @ClearButton_4Pushed, true);
+            app.ClearButton_4.Enable = 'off';
+            app.ClearButton_4.Visible = 'off';
+            app.ClearButton_4.Position = [813 265 44 22];
+            app.ClearButton_4.Text = 'Clear';
+
+            % Create Stenosis5CheckBox
+            app.Stenosis5CheckBox = uicheckbox(app.DefineStenosisUIFigure);
+            app.Stenosis5CheckBox.ValueChangedFcn = createCallbackFcn(app, @Stenosis5CheckBoxValueChanged, true);
+            app.Stenosis5CheckBox.Text = 'Stenosis 5';
+            app.Stenosis5CheckBox.Position = [877 265 78 22];
+
+            % Create EntrySliceNumberEditField_5Label
+            app.EntrySliceNumberEditField_5Label = uilabel(app.DefineStenosisUIFigure);
+            app.EntrySliceNumberEditField_5Label.Enable = 'off';
+            app.EntrySliceNumberEditField_5Label.Position = [877 231 109 22];
+            app.EntrySliceNumberEditField_5Label.Text = 'Entry Slice Number';
+
+            % Create EntrySliceNumberEditField_5
+            app.EntrySliceNumberEditField_5 = uieditfield(app.DefineStenosisUIFigure, 'numeric');
+            app.EntrySliceNumberEditField_5.Enable = 'off';
+            app.EntrySliceNumberEditField_5.Position = [1029 231 44 22];
+
+            % Create ExitSliceNumberEditField_5Label
+            app.ExitSliceNumberEditField_5Label = uilabel(app.DefineStenosisUIFigure);
+            app.ExitSliceNumberEditField_5Label.Enable = 'off';
+            app.ExitSliceNumberEditField_5Label.Position = [877 199 101 22];
+            app.ExitSliceNumberEditField_5Label.Text = 'Exit Slice Number';
+
+            % Create ExitSliceNumberEditField_5
+            app.ExitSliceNumberEditField_5 = uieditfield(app.DefineStenosisUIFigure, 'numeric');
+            app.ExitSliceNumberEditField_5.Enable = 'off';
+            app.ExitSliceNumberEditField_5.Position = [1029 199 44 22];
+
+            % Create LumenNarrowingEditField_5Label
+            app.LumenNarrowingEditField_5Label = uilabel(app.DefineStenosisUIFigure);
+            app.LumenNarrowingEditField_5Label.Enable = 'off';
+            app.LumenNarrowingEditField_5Label.Position = [877 166 122 22];
+            app.LumenNarrowingEditField_5Label.Text = 'Lumen Narrowing (%)';
+
+            % Create LumenNarrowingEditField_5
+            app.LumenNarrowingEditField_5 = uieditfield(app.DefineStenosisUIFigure, 'numeric');
+            app.LumenNarrowingEditField_5.Enable = 'off';
+            app.LumenNarrowingEditField_5.Position = [1029 166 44 22];
+
+            % Create EntryLumenRadiuscmEditField_5Label
+            app.EntryLumenRadiuscmEditField_5Label = uilabel(app.DefineStenosisUIFigure);
+            app.EntryLumenRadiuscmEditField_5Label.Enable = 'off';
+            app.EntryLumenRadiuscmEditField_5Label.Position = [877 136 142 22];
+            app.EntryLumenRadiuscmEditField_5Label.Text = 'Entry Lumen Radius (cm)';
+
+            % Create EntryLumenRadiuscmEditField_5
+            app.EntryLumenRadiuscmEditField_5 = uieditfield(app.DefineStenosisUIFigure, 'numeric');
+            app.EntryLumenRadiuscmEditField_5.Enable = 'off';
+            app.EntryLumenRadiuscmEditField_5.Position = [1029 136 44 22];
+
+            % Create ExitLumenRadiuscmEditField_5Label
+            app.ExitLumenRadiuscmEditField_5Label = uilabel(app.DefineStenosisUIFigure);
+            app.ExitLumenRadiuscmEditField_5Label.Enable = 'off';
+            app.ExitLumenRadiuscmEditField_5Label.Position = [877 104 134 22];
+            app.ExitLumenRadiuscmEditField_5Label.Text = 'Exit Lumen Radius (cm)';
+
+            % Create ExitLumenRadiuscmEditField_5
+            app.ExitLumenRadiuscmEditField_5 = uieditfield(app.DefineStenosisUIFigure, 'numeric');
+            app.ExitLumenRadiuscmEditField_5.Enable = 'off';
+            app.ExitLumenRadiuscmEditField_5.Position = [1029 104 44 22];
+
+            % Create ClearButton_5
+            app.ClearButton_5 = uibutton(app.DefineStenosisUIFigure, 'push');
+            app.ClearButton_5.ButtonPushedFcn = createCallbackFcn(app, @ClearButton_5Pushed, true);
+            app.ClearButton_5.Enable = 'off';
+            app.ClearButton_5.Visible = 'off';
+            app.ClearButton_5.Position = [1029 265 44 22];
+            app.ClearButton_5.Text = 'Clear';
+
+            % Create EnterButton
+            app.EnterButton = uibutton(app.DefineStenosisUIFigure, 'push');
+            app.EnterButton.ButtonPushedFcn = createCallbackFcn(app, @EnterButtonPushed, true);
+            app.EnterButton.Position = [490 9 100 22];
+            app.EnterButton.Text = 'Enter';
+
+            % Create NumberofbranchbetweenprelesionandstenosisEditFieldLabel
+            app.NumberofbranchbetweenprelesionandstenosisEditFieldLabel = uilabel(app.DefineStenosisUIFigure);
+            app.NumberofbranchbetweenprelesionandstenosisEditFieldLabel.Enable = 'off';
+            app.NumberofbranchbetweenprelesionandstenosisEditFieldLabel.Position = [18 50 103 42];
+            app.NumberofbranchbetweenprelesionandstenosisEditFieldLabel.Text = {'Number of branch'; 'between prelesion'; 'and stenosis'};
+
+            % Create NumberofbranchbetweenprelesionandstenosisEditField
+            app.NumberofbranchbetweenprelesionandstenosisEditField = uieditfield(app.DefineStenosisUIFigure, 'numeric');
+            app.NumberofbranchbetweenprelesionandstenosisEditField.Enable = 'off';
+            app.NumberofbranchbetweenprelesionandstenosisEditField.Position = [143 70 30 22];
+
+            % Create EditField
+            app.EditField = uieditfield(app.DefineStenosisUIFigure, 'numeric');
+            app.EditField.Enable = 'off';
+            app.EditField.Position = [184 70 30 22];
+
+            % Create EntryLabel
+            app.EntryLabel = uilabel(app.DefineStenosisUIFigure);
+            app.EntryLabel.Enable = 'off';
+            app.EntryLabel.Position = [143 46 34 22];
+            app.EntryLabel.Text = 'Entry';
+
+            % Create ExitLabel
+            app.ExitLabel = uilabel(app.DefineStenosisUIFigure);
+            app.ExitLabel.Enable = 'off';
+            app.ExitLabel.Position = [187 46 26 22];
+            app.ExitLabel.Text = 'Exit';
+
+            % Create NumberofbranchbetweenprelesionandstenosisEditField_2Label
+            app.NumberofbranchbetweenprelesionandstenosisEditField_2Label = uilabel(app.DefineStenosisUIFigure);
+            app.NumberofbranchbetweenprelesionandstenosisEditField_2Label.Enable = 'off';
+            app.NumberofbranchbetweenprelesionandstenosisEditField_2Label.Position = [232 50 103 42];
+            app.NumberofbranchbetweenprelesionandstenosisEditField_2Label.Text = {'Number of branch'; 'between prelesion'; 'and stenosis'};
+
+            % Create NumberofbranchbetweenprelesionandstenosisEditField_2
+            app.NumberofbranchbetweenprelesionandstenosisEditField_2 = uieditfield(app.DefineStenosisUIFigure, 'numeric');
+            app.NumberofbranchbetweenprelesionandstenosisEditField_2.Enable = 'off';
+            app.NumberofbranchbetweenprelesionandstenosisEditField_2.Position = [356 70 30 22];
+
+            % Create EntryLabel_2
+            app.EntryLabel_2 = uilabel(app.DefineStenosisUIFigure);
+            app.EntryLabel_2.Enable = 'off';
+            app.EntryLabel_2.Position = [356 46 34 22];
+            app.EntryLabel_2.Text = 'Entry';
+
+            % Create EditField_2
+            app.EditField_2 = uieditfield(app.DefineStenosisUIFigure, 'numeric');
+            app.EditField_2.Enable = 'off';
+            app.EditField_2.Position = [397 70 30 22];
+
+            % Create ExitLabel_2
+            app.ExitLabel_2 = uilabel(app.DefineStenosisUIFigure);
+            app.ExitLabel_2.Enable = 'off';
+            app.ExitLabel_2.Position = [400 46 26 22];
+            app.ExitLabel_2.Text = 'Exit';
+
+            % Create NumberofbranchbetweenprelesionandstenosisEditField_3Label
+            app.NumberofbranchbetweenprelesionandstenosisEditField_3Label = uilabel(app.DefineStenosisUIFigure);
+            app.NumberofbranchbetweenprelesionandstenosisEditField_3Label.Enable = 'off';
+            app.NumberofbranchbetweenprelesionandstenosisEditField_3Label.Position = [448 50 103 42];
+            app.NumberofbranchbetweenprelesionandstenosisEditField_3Label.Text = {'Number of branch'; 'between prelesion'; 'and stenosis'};
+
+            % Create NumberofbranchbetweenprelesionandstenosisEditField_3
+            app.NumberofbranchbetweenprelesionandstenosisEditField_3 = uieditfield(app.DefineStenosisUIFigure, 'numeric');
+            app.NumberofbranchbetweenprelesionandstenosisEditField_3.Enable = 'off';
+            app.NumberofbranchbetweenprelesionandstenosisEditField_3.Position = [572 70 30 22];
+
+            % Create EntryLabel_3
+            app.EntryLabel_3 = uilabel(app.DefineStenosisUIFigure);
+            app.EntryLabel_3.Enable = 'off';
+            app.EntryLabel_3.Position = [572 46 34 22];
+            app.EntryLabel_3.Text = 'Entry';
+
+            % Create EditField_3
+            app.EditField_3 = uieditfield(app.DefineStenosisUIFigure, 'numeric');
+            app.EditField_3.Enable = 'off';
+            app.EditField_3.Position = [613 70 30 22];
+
+            % Create ExitLabel_3
+            app.ExitLabel_3 = uilabel(app.DefineStenosisUIFigure);
+            app.ExitLabel_3.Enable = 'off';
+            app.ExitLabel_3.Position = [616 46 26 22];
+            app.ExitLabel_3.Text = 'Exit';
+
+            % Create NumberofbranchbetweenprelesionandstenosisEditField_4Label
+            app.NumberofbranchbetweenprelesionandstenosisEditField_4Label = uilabel(app.DefineStenosisUIFigure);
+            app.NumberofbranchbetweenprelesionandstenosisEditField_4Label.Enable = 'off';
+            app.NumberofbranchbetweenprelesionandstenosisEditField_4Label.Position = [664 50 103 42];
+            app.NumberofbranchbetweenprelesionandstenosisEditField_4Label.Text = {'Number of branch'; 'between prelesion'; 'and stenosis'};
+
+            % Create NumberofbranchbetweenprelesionandstenosisEditField_4
+            app.NumberofbranchbetweenprelesionandstenosisEditField_4 = uieditfield(app.DefineStenosisUIFigure, 'numeric');
+            app.NumberofbranchbetweenprelesionandstenosisEditField_4.Enable = 'off';
+            app.NumberofbranchbetweenprelesionandstenosisEditField_4.Position = [788 70 30 22];
+
+            % Create EntryLabel_4
+            app.EntryLabel_4 = uilabel(app.DefineStenosisUIFigure);
+            app.EntryLabel_4.Enable = 'off';
+            app.EntryLabel_4.Position = [788 46 34 22];
+            app.EntryLabel_4.Text = 'Entry';
+
+            % Create EditField_4
+            app.EditField_4 = uieditfield(app.DefineStenosisUIFigure, 'numeric');
+            app.EditField_4.Enable = 'off';
+            app.EditField_4.Position = [829 70 30 22];
+
+            % Create ExitLabel_4
+            app.ExitLabel_4 = uilabel(app.DefineStenosisUIFigure);
+            app.ExitLabel_4.Enable = 'off';
+            app.ExitLabel_4.Position = [832 46 26 22];
+            app.ExitLabel_4.Text = 'Exit';
+
+            % Create NumberofbranchbetweenprelesionandstenosisEditField_5Label
+            app.NumberofbranchbetweenprelesionandstenosisEditField_5Label = uilabel(app.DefineStenosisUIFigure);
+            app.NumberofbranchbetweenprelesionandstenosisEditField_5Label.Enable = 'off';
+            app.NumberofbranchbetweenprelesionandstenosisEditField_5Label.Position = [878 50 103 42];
+            app.NumberofbranchbetweenprelesionandstenosisEditField_5Label.Text = {'Number of branch'; 'between prelesion'; 'and stenosis'};
+
+            % Create NumberofbranchbetweenprelesionandstenosisEditField_5
+            app.NumberofbranchbetweenprelesionandstenosisEditField_5 = uieditfield(app.DefineStenosisUIFigure, 'numeric');
+            app.NumberofbranchbetweenprelesionandstenosisEditField_5.Enable = 'off';
+            app.NumberofbranchbetweenprelesionandstenosisEditField_5.Position = [1002 70 30 22];
+
+            % Create EntryLabel_5
+            app.EntryLabel_5 = uilabel(app.DefineStenosisUIFigure);
+            app.EntryLabel_5.Enable = 'off';
+            app.EntryLabel_5.Position = [1002 46 34 22];
+            app.EntryLabel_5.Text = 'Entry';
+
+            % Create EditField_5
+            app.EditField_5 = uieditfield(app.DefineStenosisUIFigure, 'numeric');
+            app.EditField_5.Enable = 'off';
+            app.EditField_5.Position = [1043 70 30 22];
+
+            % Create ExitLabel_5
+            app.ExitLabel_5 = uilabel(app.DefineStenosisUIFigure);
+            app.ExitLabel_5.Enable = 'off';
+            app.ExitLabel_5.Position = [1046 46 26 22];
+            app.ExitLabel_5.Text = 'Exit';
+
+            % Create MarkstenosisbetweenPrelesionandPostlesionSitesLabel
+            app.MarkstenosisbetweenPrelesionandPostlesionSitesLabel = uilabel(app.DefineStenosisUIFigure);
+            app.MarkstenosisbetweenPrelesionandPostlesionSitesLabel.Position = [21 296 306 22];
+            app.MarkstenosisbetweenPrelesionandPostlesionSitesLabel.Text = 'Mark stenosis between Pre-lesion and Post-lesion Sites';
+
+            % Show the figure after all components are created
+            app.DefineStenosisUIFigure.Visible = 'on';
+        end
+    end
+
+    % App creation and deletion
+    methods (Access = public)
+
+        % Construct app
+        function app = STENOSISGUI(varargin)
+
+            % Create UIFigure and components
+            createComponents(app)
+
+            % Register the app with App Designer
+            registerApp(app, app.DefineStenosisUIFigure)
+
+            % Execute the startup function
+            runStartupFcn(app, @(app)startupFcn(app, varargin{:}))
+
+            if nargout == 0
+                clear app
+            end
+        end
+
+        % Code that executes before app deletion
+        function delete(app)
+
+            % Delete UIFigure when app is deleted
+            delete(app.DefineStenosisUIFigure)
+        end
+    end
+end

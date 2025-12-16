@@ -1,0 +1,1468 @@
+classdef WING < matlab.apps.AppBase
+
+    % Properties that correspond to app components
+    properties (Access = public)
+        DAIWingUIFigure                 matlab.ui.Figure
+        LoadMenu                        matlab.ui.container.Menu
+        FirstPassCTPImagesMenu          matlab.ui.container.Menu
+        ScannerModelMenu                matlab.ui.container.Menu
+        SiemensMenu                     matlab.ui.container.Menu
+        CanonMenu                       matlab.ui.container.Menu
+        GEMenu                          matlab.ui.container.Menu
+        WHCCTPImagesMenu                matlab.ui.container.Menu
+        whcMButton                      matlab.ui.control.Button
+        whcSamplingROIDropDownLabel     matlab.ui.control.Label
+        whcSamplingROIDropDown          matlab.ui.control.DropDown
+        whcSetWindowWidth               matlab.ui.control.TextArea
+        whcSetWindowButton              matlab.ui.control.Button
+        whcSetWindowLevel               matlab.ui.control.TextArea
+        whcSetPostLesionButton          matlab.ui.control.Button
+        whcSetPreLesionButton           matlab.ui.control.Button
+        WHCSlicesSliderLabel            matlab.ui.control.Label
+        WHCTimePointsSliderLabel        matlab.ui.control.Label
+        WHCSlicesSlider                 matlab.ui.control.Slider
+        WHCTimePointsSlider             matlab.ui.control.Slider
+        UnauthorizedUseisProhibitedLabelStressOnly  matlab.ui.control.Label
+        SosLabPropertyLabelStressOnly   matlab.ui.control.Label
+        DynamicAngiographicImagingDAIWingPanel  matlab.ui.container.Panel
+        HUChangesPanel                  matlab.ui.container.Panel
+        SlopeDisplay                    matlab.ui.control.TextArea
+        T2EditField                     matlab.ui.control.NumericEditField
+        T2EditFieldLabel                matlab.ui.control.Label
+        T1EditField                     matlab.ui.control.NumericEditField
+        T1EditFieldLabel                matlab.ui.control.Label
+        HUChangeButton                  matlab.ui.control.Button
+        HUChange                        matlab.ui.control.UIAxes
+        MButton                         matlab.ui.control.Button
+        ManualPostWashoutInput          matlab.ui.control.TextArea
+        PostWashoutLabel                matlab.ui.control.Label
+        ManualPostBaselineInput         matlab.ui.control.TextArea
+        PostBaselineLabel               matlab.ui.control.Label
+        FitPostCurvesButton             matlab.ui.control.Button
+        PreWashoutLabel                 matlab.ui.control.Label
+        PreBaselineLabel                matlab.ui.control.Label
+        ManualPreWashoutInput           matlab.ui.control.TextArea
+        ManualPreBaselineInput          matlab.ui.control.TextArea
+        FitPreCurvesButton              matlab.ui.control.Button
+        AverageBloodFlowAssessmentLabel  matlab.ui.control.Label
+        PostLesionMeanFlowVelocitycmsEditField  matlab.ui.control.NumericEditField
+        PostLesionMeanFlowVelocitycmsEditFieldLabel  matlab.ui.control.Label
+        PreLesionMeanFlowVelocitycmsEditField  matlab.ui.control.NumericEditField
+        PreLesionMeanFlowVelocitycmsEditFieldLabel  matlab.ui.control.Label
+        ConversionFactorHUpermgImLEditFieldLabel  matlab.ui.control.Label
+        ConversionFactorHUpermgImLEditField  matlab.ui.control.NumericEditField
+        ContrastConcentrationmgImLEditFieldLabel  matlab.ui.control.Label
+        ContrastConcentrationmgImLEditField  matlab.ui.control.NumericEditField
+        ContrastVolumemLEditFieldLabel  matlab.ui.control.Label
+        ContrastVolumemLEditField       matlab.ui.control.NumericEditField
+        SamplingROIDropDownLabel        matlab.ui.control.Label
+        SamplingROIDropDown             matlab.ui.control.DropDown
+        SetWindowWidth                  matlab.ui.control.TextArea
+        SetWindowButton                 matlab.ui.control.Button
+        SetWindowLevel                  matlab.ui.control.TextArea
+        SetPostLesionButton             matlab.ui.control.Button
+        SetPreLesionButton              matlab.ui.control.Button
+        SlicesSliderLabel               matlab.ui.control.Label
+        TimePointsSliderLabel           matlab.ui.control.Label
+        SlicesSlider                    matlab.ui.control.Slider
+        TimePointsSlider                matlab.ui.control.Slider
+        InputParametersPanel            matlab.ui.container.Panel
+        PostTracerPercentageEditField   matlab.ui.control.NumericEditField
+        PostTracerPercentageLabel       matlab.ui.control.Label
+        PreTracerPercentageEditField    matlab.ui.control.NumericEditField
+        PreTracerPercentageLabel        matlab.ui.control.Label
+        PostAorticValveAreacm2Label     matlab.ui.control.Label
+        AorticValveAreacm2PostEditField  matlab.ui.control.NumericEditField
+        AorticValveAreacm2PreEditField  matlab.ui.control.NumericEditField
+        PreAorticValveAreacm2Label      matlab.ui.control.Label
+        CalculateButton                 matlab.ui.control.Button
+        OutputParametersPanel           matlab.ui.container.Panel
+        SaveResultButton                matlab.ui.control.Button
+        WHCImageAxes                    matlab.ui.control.UIAxes
+        preLesionPlotArea               matlab.ui.control.UIAxes
+        postLesionPlotArea              matlab.ui.control.UIAxes
+        ImageAxes                       matlab.ui.control.UIAxes
+    end
+
+    % Global Variables
+    properties (Access = public)
+        alphaPre;
+        alphaPost; 
+        allDicomInfo;
+        aorticValveAreaPre = 0.9;
+        aorticValveAreaPost = 0.9;
+        areaOfAnIsotropicPixel = 0.009216;
+        aucPre;
+        aucPost;
+        betaPre;
+        betaPost;
+        contourSliceNumberPre = 0;
+        contourSliceNumberPost = 0;
+        contrastConcentration = 370;
+        contrastDilutionFactor = 1;
+        contrastVolume = 50;
+        conversionFactor = 30;
+        currentSlice;
+        currentTimePoint;
+        dicomInfo;
+        fittedCurvePre;
+        fittedCurvePost;
+        fittedTimePre;
+        fittedTimePost;
+        fourDImageSet;
+        im;
+        imWHC;
+        interpolatedTimePoints;
+        interpolatedSampledPointsPre;
+        interpolatedSampledPointsPost;
+        kPre;
+        kPost; 
+        maxWindow;
+        maxYAxisInterval = 50;
+        meanFlowVelocityPre;
+        meanFlowVelocityPost;
+        minWindow;
+        movieStop = false;
+        movieFrameDuration = 0.07;
+        numberOfIsotropicPixelsPre;
+        numberOfIsotropicPixelsPost;
+        plotXPre;
+        plotXPost;
+        preCurrentTimePoint;
+        preCurve;
+        preLesionTimePoints;
+        prePoint;
+        pointObjectPre;
+        pointObjectPost;
+        postCurrentTimePoint;
+        postCurve;
+        postLesionTimePoints;
+        postPoint;
+        ptsPre;
+        ptsPost;
+        referenceFlowVelocityPre = 0;
+        referenceFlowVelocityPost = 0;
+        referencePercentage = 75;
+        referenceTimePoint = 5;
+        rmsePre;
+        rmsePost; 
+        rxPre;
+        rxPost;
+        ryPre;
+        ryPost;
+        searchROI = 6;
+        samplingROIM = 2;
+        samplingROIN = 2;
+        scannerType = 'Siemens';
+        scannerName = ["Siemens", "Canon", "GE", "WholeHeartCycle"];
+        slopeHU;
+        sxPre;
+        sxPost;
+        syPre;
+        syPost;
+        t1;
+        t2;
+        timePoints;
+        timeUnit;
+        tracerPercentagePre = 1.176;
+        tracerPercentagePost = 0.976;
+        versionNumberDAIWing = '1.0';
+        whcAllDicomInfo;
+        whcContourSliceNumberPre;
+        whcContourSliceNumberPost;
+        whcCurrentSlice;
+        whcCurrentTimePoint;
+        whcDicomInfo;
+        whcFittedCurvePre;
+        whcFittedCurvePost;
+        whcFittedTimePre;
+        whcFittedTimePost;
+        whcImageSet;
+        whcInterpolatedSampledPointsPre;
+        whcInterpolatedSampledPointsPost;
+        whcInterpolatedTimePoints;
+        whcMaxWindow;
+        whcMinWindow;
+        whcMovieStop = false;
+        whcPreCurrentTimePoint;
+        whcPostCurrentTimePoint;
+        whcPreCurve;
+        whcPostCurve;
+        whcPreLesionTimePoints;
+        whcPointObjectPre;
+        whcPointObjectPost;
+        whcPostLesionTimePoints;
+        whcPtsPre;
+        whcPtsPost;
+        whcSearchROI = 6;
+        whcSamplingROIM = 2;
+        whcSamplingROIN = 2;
+        whcRxPre;
+        whcRxPost;
+        whcRyPre;
+        whcRyPost;
+        whcSxPre;
+        whcSxPost;
+        whcSyPre;
+        whcSyPost;
+        whcTimePoints;
+        whcTimeUnit;
+        windowSizeHUDifferenceMap = 100;
+        yAxisLimitMin = -50;
+        yAxisLimitMax = 500;
+    end
+    
+    
+    methods (Access = private)
+        
+        function drawPreLesionCurve(app)
+            drawCurve(app, 'pre', 'wing');
+        end
+        
+        function drawPostLesionCurve(app)
+            drawCurve(app, 'post', 'wing');
+        end
+        
+        function whcDrawPreLesionCurve(app)
+            drawCurve(app, 'whcPre', 'wing');
+        end
+        
+        function whcDrawPostLesionCurve(app)
+            drawCurve(app, 'whcPost', 'wing');
+        end
+
+        function whcDrawPreLesionVn(app)
+            drawCurve(app, 'whcPreVn', 'wing');
+        end
+
+        function whcDrawPostLesionVn(app)
+            drawCurve(app, 'whcPostVn', 'wing');
+        end
+        
+        function updateImageWithROI(app)
+            if (app.currentSlice == app.contourSliceNumberPre)
+                imageData(1:512, 1:512) = app.fourDImageSet(app.currentSlice,app.currentTimePoint,1:512,1:512);
+                updateimage(app, imageData);
+                hold(app.ImageAxes, 'on');
+                plot(app.ImageAxes, app.syPre, app.sxPre, 'b.', 'MarkerSize', 1);
+                hold(app.ImageAxes, 'off');
+            elseif (app.currentSlice == app.contourSliceNumberPost)
+                imageData(1:512, 1:512) = app.fourDImageSet(app.currentSlice,app.currentTimePoint,1:512,1:512);
+                updateimage(app, imageData);
+                hold(app.ImageAxes, 'on');
+                plot(app.ImageAxes, app.syPost, app.sxPost, 'r.', 'MarkerSize', 1);
+                hold(app.ImageAxes, 'off');
+            else
+                imageData(1:512, 1:512) = app.fourDImageSet(app.currentSlice,app.currentTimePoint,1:512,1:512);
+                updateimage(app, imageData);
+            end
+        end
+        
+        function updateimage(app,imagefile)
+
+            % Try displaying the image
+            try
+                app.im = imagefile;
+            catch ME
+                % Error
+                uialert(app.DAIWingUIFigure, ME.message, 'Image Error');
+                return;
+            end
+
+            % Try showing the plots
+            try
+                imagesc(app.ImageAxes, app.im, [app.minWindow, app.maxWindow]);
+                enableDefaultInteractivity(app.ImageAxes);
+            catch ME
+                % Error
+                uialert(app.DAIWingUIFigure, ME.message, 'Image Error');
+                return;
+            end
+
+        end
+        
+        function updateimageWHC(app,imagefile)
+
+            % Try displaying the image
+            try
+                app.imWHC = imagefile;
+            catch ME
+                % Error
+                uialert(app.DAIWingUIFigure, ME.message, 'Image Error');
+                return;
+            end
+
+            % Try showing the plots
+            try
+                imagesc(app.WHCImageAxes, app.imWHC, [app.whcMinWindow, app.whcMaxWindow]);
+                enableDefaultInteractivity(app.WHCImageAxes);
+            catch ME
+                % Error
+                uialert(app.DAIWingUIFigure, ME.message, 'Image Error');
+                return;
+            end
+
+        end
+
+        function whcUpdateImageWithROI(app)
+            if (app.whcCurrentSlice == app.whcContourSliceNumberPre)
+                imageData(1:512, 1:512) = app.whcImageSet(app.whcCurrentSlice,app.whcCurrentTimePoint,1:512,1:512);
+                updateimageWHC(app, imageData);
+                hold(app.WHCImageAxes, 'on');
+                plot(app.WHCImageAxes, app.whcSyPre, app.whcSxPre, 'b.', 'MarkerSize', 1);
+                hold(app.WHCImageAxes, 'off');
+            elseif (app.whcCurrentSlice == app.whcContourSliceNumberPost)
+                imageData(1:512, 1:512) = app.whcImageSet(app.whcCurrentSlice,app.whcCurrentTimePoint,1:512,1:512);
+                updateimageWHC(app, imageData);
+                hold(app.WHCImageAxes, 'on');
+                plot(app.WHCImageAxes, app.whcSyPost, app.whcSxPost, 'r.', 'MarkerSize', 1);
+                hold(app.WHCImageAxes, 'off');
+            else
+                imageData(1:512, 1:512) = app.whcImageSet(app.whcCurrentSlice,app.whcCurrentTimePoint,1:512,1:512);
+                updateimageWHC(app, imageData);
+            end
+        end
+        
+        function WHCImagesLoader(app, choice)
+
+            if (nargin < 2)
+                choice = false;
+            end
+
+            % Display uigetfile dialog
+            p = uigetdir;
+            if (p == 0)
+                % Do Nothing
+                figure(app.DAIWingUIFigure);
+            else
+                set(app.DAIWingUIFigure, 'Pointer','watch');
+                drawnow;
+                figure(app.DAIWingUIFigure);
+
+                try
+                    % Read dicom files:
+                    [app.whcImageSet, app.whcTimePoints, app.whcTimeUnit, app.whcAllDicomInfo] = readAndSplitImages(p, app.scannerType, choice);
+                    app.whcDicomInfo = app.whcAllDicomInfo{1};
+                    % app.interpolatedTimePoints = app.whcTimePoints;
+                    app.whcPreLesionTimePoints = app.whcTimePoints;
+                    app.whcPostLesionTimePoints = app.whcTimePoints;
+
+                    set(app.DAIWingUIFigure, 'Pointer','arrow');
+
+                    % Make sure user didn't cancel uigetfile dialog
+                    if (ischar(p))
+                        % Generate the First Image, update sliders' positions and Send it for displaying
+
+                        firstImage(1:512,1:512) = app.whcImageSet(1,1,1:512,1:512);
+                        app.WHCSlicesSlider.Limits = [1 size(app.whcImageSet,1)];
+                        tickValues = getSliderTicks(1, size(app.whcImageSet,1));
+                        app.WHCSlicesSlider.MajorTicks = tickValues;
+                        app.WHCTimePointsSlider.Limits = [1 size(app.whcImageSet,2)];
+                        app.WHCTimePointsSlider.MajorTicks = getSliderTicks(1, size(app.whcImageSet,2));
+                        app.WHCTimePointsSlider.MajorTickLabels = arrayfun(@num2str, app.WHCTimePointsSlider.MajorTicks, 'UniformOutput', 0);
+                        app.WHCSlicesSlider.MinorTicks = [1:size(app.whcImageSet,1)];
+                        level = 500;
+                        width = 1500;
+                        app.whcMinWindow = level - width / 2;
+                        app.whcMaxWindow = level + width / 2;
+                        app.whcCurrentSlice = 1;
+                        app.whcCurrentTimePoint = 1;
+                        app.WHCSlicesSlider.Value = 1;
+                        app.WHCSlicesSliderLabel.Text = sprintf('Slice %d/%d', app.whcCurrentSlice, size(app.whcImageSet, 1));
+                        app.WHCTimePointsSlider.Value = 1;
+                        updateimageWHC(app, firstImage);
+                    end
+
+                    % Set Initial y axes limits
+                    app.preLesionPlotArea.YLim = [-50 500];
+                    app.postLesionPlotArea.YLim = [-50 500];
+
+                catch ME
+                    set(app.DAIWingUIFigure, 'Pointer','arrow');
+                    msg = strcat('The DAI did not fail, there seems to be an issue with this dataset in particular: ', ME.message);
+                    errordlg(msg);
+                end
+
+            end
+        end
+        
+        function ImagesMenuLoader(app, choice)
+
+            if (nargin < 2)
+                choice = false;
+            end
+
+            % Display uigetfile dialog
+            p = uigetdir;
+            if (p == 0)
+                % Do Nothing
+                figure(app.DAIWingUIFigure);
+            else
+                set(app.DAIWingUIFigure, 'Pointer','watch');
+                drawnow;
+                figure(app.DAIWingUIFigure);
+
+                try
+                    % Read dicom files:
+                    [app.fourDImageSet, app.timePoints, app.timeUnit, app.allDicomInfo] = readAndSplitImages(p, app.scannerType, choice);
+                    app.dicomInfo = app.allDicomInfo{1};
+                    app.interpolatedTimePoints = app.timePoints;
+                    app.preLesionTimePoints = app.timePoints;
+                    app.postLesionTimePoints = app.timePoints;
+
+                    set(app.DAIWingUIFigure, 'Pointer','arrow');
+
+                    % Make sure user didn't cancel uigetfile dialog
+                    if (ischar(p))
+                        % Generate the First Image, update sliders' positions and Send it for displaying
+
+                        firstImage(1:512,1:512) = app.fourDImageSet(1,1,1:512,1:512);
+                        app.SlicesSlider.Limits = [1 size(app.fourDImageSet,1)];
+                        tickValues = getSliderTicks(1, size(app.fourDImageSet,1));
+                        app.SlicesSlider.MajorTicks = tickValues;
+                        app.TimePointsSlider.Limits = [1 size(app.fourDImageSet,2)];
+                        app.TimePointsSlider.MajorTicks = getSliderTicks(1, size(app.fourDImageSet,2));
+                        app.TimePointsSlider.MajorTickLabels = arrayfun(@num2str, app.TimePointsSlider.MajorTicks, 'UniformOutput', 0);
+                        app.SlicesSlider.MinorTicks = [1:size(app.fourDImageSet,1)];
+                        level = 500;
+                        width = 1500;
+                        app.minWindow = level - width / 2;
+                        app.maxWindow = level + width / 2;
+                        app.currentSlice = 1;
+                        app.currentTimePoint = 1;
+                        app.SlicesSlider.Value = 1;
+                        app.SlicesSliderLabel.Text = sprintf('Slice %d/%d', app.currentSlice, size(app.fourDImageSet, 1));
+                        app.TimePointsSlider.Value = 1;
+                        updateimage(app, firstImage);
+                    end
+
+                    % Set Initial y axes limits
+                    app.preLesionPlotArea.YLim = [-50 500];
+                    app.postLesionPlotArea.YLim = [-50 500];
+
+                catch ME
+                    set(app.DAIWingUIFigure, 'Pointer','arrow');
+                    msg = strcat('The DAI did not fail, there seems to be an issue with this dataset in particular: ', ME.message);
+                    errordlg(msg);
+                end
+
+            end
+        end
+        
+        function updateCoordinates(app)
+            
+            x = round(app.HUChange.CurrentPoint(1,2));
+            y = round(app.HUChange.CurrentPoint(1,1));
+            if (x > 0 && y > 0 && x <= app.windowSizeHUDifferenceMap && y <= app.windowSizeHUDifferenceMap)
+                app.SlopeDisplay.Visible = true;
+                app.SlopeDisplay.Value = sprintf('%.2f',app.slopeHU(x, y));
+            else
+                app.SlopeDisplay.Visible = false;
+            end
+            
+        end
+        
+    end
+    
+
+    % Callbacks that handle component events
+    methods (Access = private)
+
+        % Code that executes after component creation
+        function startupFcn(app)
+            % Update Version
+            wUpdateVersion(app);
+            
+            % Configure image axes
+            app.ImageAxes.Visible = 'off';
+            app.ImageAxes.Colormap = gray(256);
+            axis(app.ImageAxes, 'image');
+            
+            app.WHCImageAxes.Visible = 'off';
+            app.WHCImageAxes.Colormap = gray(256);
+            axis(app.WHCImageAxes, 'image');
+        end
+
+        % Menu selected function: SiemensMenu
+        function SiemensMenuSelected(app, event)
+            app.scannerType = convertStringsToChars(app.scannerName(1));
+
+            app.SiemensMenu.Checked = true;
+            app.CanonMenu.Checked = false;
+            app.GEMenu.Checked = false;
+
+            ImagesMenuLoader(app);
+        end
+
+        % Menu selected function: GEMenu
+        function GEMenuSelected(app, event)
+            app.scannerType = convertStringsToChars(app.scannerName(3));
+
+            app.GEMenu.Checked = true;
+            app.SiemensMenu.Checked = false;
+            app.CanonMenu.Checked = false;
+
+            ImagesMenuLoader(app);
+        end
+
+        % Menu selected function: CanonMenu
+        function CanonMenuSelected(app, event)
+            app.scannerType = convertStringsToChars(app.scannerName(2));
+
+            app.CanonMenu.Checked = true;
+            app.SiemensMenu.Checked = false;
+            app.GEMenu.Checked = false;
+
+            options = {'Enhanced', 'Standard'};
+            dlgPrompt = 'Select image format:';
+            dlgTitle = 'Canon image format selection';
+            [idx,~] = listdlg('ListString', options, 'PromptString', dlgPrompt, 'SelectionMode', 'single', 'ListSize',[310,40], 'Name', dlgTitle);
+
+            % Check the selected index
+            if ~isempty(idx)
+                choice = options{idx};
+            else
+                % Default is enhanced
+                choice = options{1};
+            end
+
+            ImagesMenuLoader(app, choice);
+        end
+
+        % Value changing function: SlicesSlider
+        function SlicesSliderValueChanging(app, event)
+            sliceLimit = size(app.fourDImageSet,1);
+            if (round(event.Value) > sliceLimit)
+                changingValue = sliceLimit;
+            else
+                if (round(event.Value) == 0)
+                    changingValue = 1;
+                else
+                    changingValue = round(event.Value);
+                end
+            end
+            app.currentSlice = changingValue;
+            app.SlicesSliderLabel.Text = sprintf('Slice %d/%d', app.currentSlice, size(app.fourDImageSet, 1));
+            updateImageWithROI(app);
+            
+        end
+
+        % Value changing function: TimePointsSlider
+        function TimePointsSliderValueChanging(app, event)
+            timePointsLimit = size(app.fourDImageSet,2);
+            if (round(event.Value) > timePointsLimit)
+                changingValue = timePointsLimit;
+            else
+                if (round(event.Value) == 0)
+                    changingValue = 1;
+                else
+                    changingValue = round(event.Value);
+                end
+            end
+            app.currentTimePoint = changingValue;
+            updateImageWithROI(app);
+            
+        end
+
+        % Button pushed function: SetWindowButton
+        function SetWindowButtonPushed(app, event)
+            level = str2double(app.SetWindowLevel.Value{1});
+            width = str2double(app.SetWindowWidth.Value{1});
+            app.minWindow = level - width / 2;
+            app.maxWindow = level + width / 2;
+            imagesc(app.ImageAxes, app.im, [app.minWindow, app.maxWindow]);
+        end
+
+        % Button pushed function: SetPreLesionButton
+        function SetPreLesionButtonPushed(app, event)
+            zoom(app.ImageAxes, 'off');
+
+            app.preCurrentTimePoint = app.currentTimePoint;
+            segmentationWindowSize = 25;
+
+            if (strcmp(app.SamplingROIDropDown.Value, 'Freehand'))
+                app.ptsPre = drawfreehand(app.ImageAxes);
+                app.ptsPre.Position = round(app.ptsPre.Position);
+                app.pointObjectPre = [app.currentSlice, app.currentTimePoint, round(app.ptsPre.Position(1,:)), round(app.ptsPre.Position(2,:))];
+                % FreeHand Writing Case:
+                % The order of getting contour is flipped in this case, as
+                % we first need to get contour and then calculate the
+                % sample.
+                [imageWithContour, radiusIncm, areaOfContourInCmSq, app.sxPre, app.syPre] = getContour(app.ptsPre.Position(:,2),app.ptsPre.Position(:,1),segmentationWindowSize,app.currentSlice, app.preCurrentTimePoint, app.fourDImageSet, app.dicomInfo.PixelSpacing);
+                format shortG
+                app.AorticValveAreacm2PreEditField.Value = areaOfContourInCmSq;
+                [app.preCurve, app.interpolatedSampledPointsPre, app.interpolatedTimePoints, app.sxPre, app.syPre, app.rxPre, app.ryPre] = getBestSample(app.sxPre, app.syPre,app.searchROI,app.samplingROIM,app.samplingROIN,app.currentSlice,app.fourDImageSet,app.preLesionTimePoints);
+                app.contourSliceNumberPre = app.currentSlice;
+            else
+                app.ptsPre = drawpoint(app.ImageAxes);
+                app.pointObjectPre = [app.currentSlice, app.currentTimePoint, round(app.ptsPre.Position(2)), round(app.ptsPre.Position(1))];
+                app.fittedCurvePre = zeros(size(app.timePoints));
+                [app.preCurve, app.interpolatedSampledPointsPre, app.interpolatedTimePoints, app.sxPre, app.syPre, app.rxPre, app.ryPre] = getBestSample(app.pointObjectPre(3), app.pointObjectPre(4), app.searchROI, app.samplingROIM, app.samplingROIN, app.currentSlice, app.fourDImageSet, app.preLesionTimePoints);
+                [imageWithContour, radiusIncm, areaOfContourInCmSq] = getContour(app.pointObjectPre(3), app.pointObjectPre(4), segmentationWindowSize, app.currentSlice, app.preCurrentTimePoint, app.fourDImageSet, app.dicomInfo.PixelSpacing);
+                format shortG
+                app.AorticValveAreacm2PreEditField.Value = areaOfContourInCmSq;
+            end
+
+            imageData(1:512, 1:512) = app.fourDImageSet(app.currentSlice,app.currentTimePoint,1:512,1:512);
+            imageWithContour = getROIOverlayed(imageData, app.sxPre, app.syPre);
+            updateimage(app,imageData);
+            hold(app.ImageAxes, 'on');
+            plot(app.ImageAxes, app.syPre, app.sxPre, 'b.', 'MarkerSize', 1);
+            hold(app.ImageAxes, 'off');
+            drawPreLesionCurve(app);
+        end
+
+        % Value changed function: SamplingROIDropDown
+        function SamplingROIDropDownValueChanged(app, event)
+            value = app.SamplingROIDropDown.Value;
+            if (value(2) == 'x')
+                app.samplingROIM = str2double(value(1));
+                app.samplingROIN = str2double(value(3));
+            elseif (value(3) == 'x')
+                app.samplingROIM = str2double(value(1:2));
+                app.samplingROIN = str2double(value(4:5));
+            end
+        end
+
+        % Button pushed function: SetPostLesionButton
+        function SetPostLesionButtonPushed(app, event)
+            zoom(app.ImageAxes, 'off');
+
+            app.postCurrentTimePoint = app.currentTimePoint;
+            segmentationWindowSize = 25;
+
+            if (strcmp(app.SamplingROIDropDown.Value, 'Freehand'))
+                app.ptsPost = drawfreehand(app.ImageAxes);
+                app.ptsPost.Position = round(app.ptsPost.Position);
+                app.pointObjectPost = [app.currentSlice, app.currentTimePoint, round(app.ptsPost.Position(1,:)), round(app.ptsPost.Position(2,:))];
+                % FreeHand Writing Case:
+                % The order of getting contour is flipped in this case, as
+                % we first need to get contour and then calculate the
+                % sample.
+                [imageWithContour, radiusIncm, areaOfContourInCmSq, app.sxPost, app.syPost] = getContour(app.ptsPost.Position(:,2),app.ptsPost.Position(:,1),segmentationWindowSize,app.currentSlice, app.postCurrentTimePoint, app.fourDImageSet, app.dicomInfo.PixelSpacing);
+                format shortG
+                app.AorticValveAreacm2PostEditField.Value = areaOfContourInCmSq;
+                [app.postCurve, app.interpolatedSampledPointsPost, app.interpolatedTimePoints, app.sxPost, app.syPost, app.rxPost, app.ryPost] = getBestSample(app.sxPost, app.syPost,app.searchROI,app.samplingROIM,app.samplingROIN,app.currentSlice,app.fourDImageSet,app.postLesionTimePoints);
+                app.contourSliceNumberPost = app.currentSlice;
+            else
+                app.ptsPost = drawpoint(app.ImageAxes);
+                app.pointObjectPost = [app.currentSlice, app.currentTimePoint, round(app.ptsPost.Position(2)), round(app.ptsPost.Position(1))];
+                app.fittedCurvePost = zeros(size(app.timePoints));
+                [app.postCurve, app.interpolatedSampledPointsPost, app.interpolatedTimePoints, app.sxPost, app.syPost, app.rxPost, app.ryPost] = getBestSample(app.pointObjectPost(3), app.pointObjectPost(4), app.searchROI, app.samplingROIM, app.samplingROIN, app.currentSlice, app.fourDImageSet, app.postLesionTimePoints);
+                [imageWithContour, radiusIncm, areaOfContourInCmSq] = getContour(app.pointObjectPost(3), app.pointObjectPost(4), segmentationWindowSize, app.currentSlice, app.postCurrentTimePoint, app.fourDImageSet, app.dicomInfo.PixelSpacing);
+                format shortG
+                app.AorticValveAreacm2PostEditField.Value = areaOfContourInCmSq;
+            end
+
+            imageData(1:512, 1:512) = app.fourDImageSet(app.currentSlice,app.currentTimePoint,1:512,1:512);
+            imageWithContour = getROIOverlayed(imageData, app.sxPost, app.syPost);
+            updateimage(app,imageData);
+            hold(app.ImageAxes, 'on');
+            plot(app.ImageAxes, app.syPost, app.sxPost, 'r.', 'MarkerSize', 1);
+            hold(app.ImageAxes, 'off');
+            drawPostLesionCurve(app);
+        end
+
+        % Button pushed function: CalculateButton
+        function CalculateButtonPushed(app, event)
+            app.aorticValveAreaPre = app.AorticValveAreacm2PreEditField.Value;
+            app.aorticValveAreaPost = app.AorticValveAreacm2PostEditField.Value;
+            app.tracerPercentagePre = app.PreTracerPercentageEditField.Value / 100;
+            app.tracerPercentagePost = app.PostTracerPercentageEditField.Value / 100;
+            
+            app.contrastVolume = app.ContrastVolumemLEditField.Value;
+            app.contrastConcentration = app.ContrastConcentrationmgImLEditField.Value;
+            app.conversionFactor = app.ConversionFactorHUpermgImLEditField.Value;
+
+            wCalculateFlowVelocity(app);
+          
+            app.PreLesionMeanFlowVelocitycmsEditField.Value = app.referenceFlowVelocityPre;
+            app.PostLesionMeanFlowVelocitycmsEditField.Value = app.referenceFlowVelocityPost;
+
+            whcDrawPreLesionVn(app);
+            whcDrawPostLesionVn(app);
+        end
+
+        % Button pushed function: FitPreCurvesButton
+        function FitPreCurvesButtonPushed(app, event)
+            if isrow(app.preCurve)
+                app.preCurve = app.preCurve';
+            end
+
+            if isnan(str2double(app.ManualPreBaselineInput.Value))
+                manualBaselineValuePreLesion = 0;
+            else
+                manualBaselineValuePreLesion = str2double(app.ManualPreBaselineInput.Value);
+            end
+            if isnan(str2double(app.ManualPreWashoutInput.Value))
+                manualWashoutValuePreLesion = 0;
+            else
+                manualWashoutValuePreLesion = str2double(app.ManualPreWashoutInput.Value);
+            end
+
+            try
+                [app.fittedCurvePre, app.fittedTimePre, app.preCurve, app.rmsePre, app.kPre, app.alphaPre, app.betaPre] = getFittedCurve(app.preCurve, app.plotXPre, manualBaselineValuePreLesion, manualWashoutValuePreLesion);
+                app.aucPre = getAreaUnderCurve(app.fittedCurvePre, app.fittedTimePre);
+
+                drawPreLesionCurve(app);
+
+            catch ME
+                msg = strcat('Problem in Curve Fitting:', ME.message);
+                errordlg(msg);
+                pause(5);
+                set(app.DAIWingUIFigure, 'Pointer','arrow');
+            end
+        end
+
+        % Button pushed function: FitPostCurvesButton
+        function FitPostCurvesButtonPushed(app, event)
+            if isrow(app.postCurve)
+                app.postCurve = app.postCurve';
+            end
+
+            if isnan(str2double(app.ManualPostBaselineInput.Value))
+                manualBaselineValuePreLesion = 0;
+            else
+                manualBaselineValuePreLesion = str2double(app.ManualPostBaselineInput.Value);
+            end
+            if isnan(str2double(app.ManualPostWashoutInput.Value))
+                manualWashoutValuePreLesion = 0;
+            else
+                manualWashoutValuePreLesion = str2double(app.ManualPostWashoutInput.Value);
+            end
+
+            try
+                [app.fittedCurvePost, app.fittedTimePost, app.postCurve, app.rmsePost, app.kPost, app.alphaPost, app.betaPost] = getFittedCurve(app.postCurve, app.plotXPre, manualBaselineValuePreLesion, manualWashoutValuePreLesion);
+                app.aucPost = getAreaUnderCurve(app.fittedCurvePost, app.fittedTimePost);
+
+                drawPostLesionCurve(app);
+
+            catch ME
+                msg = strcat('Problem in Curve Fitting:', ME.message);
+                errordlg(msg);
+                pause(5);
+                set(app.DAIWingUIFigure, 'Pointer','arrow');
+            end
+        end
+
+        % Button pushed function: MButton
+        function MButtonPushed(app, event)
+            if (strcmp(app.MButton.Text, 'M'))
+                app.MButton.Text = 'S';
+                app.movieStop = false;
+                numberOfTimePoints = max(size(app.timePoints));
+                i = app.currentTimePoint;
+                while(app.movieStop == false)
+                    currentImage(1:512,1:512) = app.fourDImageSet(app.currentSlice, i, 1:512,1:512);
+                    app.TimePointsSlider.Value = i;
+                    updateImageWithROI(app);
+                    pause(app.movieFrameDuration);
+                    i = i + 1;
+                    if (i == numberOfTimePoints)
+                        i = 1;
+                    end
+                    app.currentTimePoint = i;
+                end
+            elseif (strcmp(app.MButton.Text, 'S'))
+                app.MButton.Text = 'M';
+                app.movieStop = true;
+            end
+            
+            
+            
+        end
+
+        % Button pushed function: HUChangeButton
+        function HUChangeButtonPushed(app, event)
+            zoom(app.HUChange, 'off');
+            
+            app.t1 = app.T1EditField.Value;
+            app.t2 = app.T2EditField.Value;
+            
+            app.currentTimePoint = app.t2;
+            app.TimePointsSlider.Value = app.t2;
+            updateImageWithROI(app);
+            
+            point = drawpoint(app.ImageAxes);
+            cx = round(point.Position(2));
+            cy = round(point.Position(1));
+            
+            [croppedImageT1, croppedImageT2] = wGetCroppedWindowFromImage(app, cx, cy, app.windowSizeHUDifferenceMap, app.t1, app.t2);
+            
+            differenceHU = croppedImageT2 - croppedImageT1;
+            app.slopeHU = differenceHU ./ (app.timePoints(app.t2) - app.timePoints(app.t1));
+            
+            clims = [min(app.slopeHU(:)) max(app.slopeHU(:))];
+            imagesc(app.HUChange, app.slopeHU, clims);
+            colorbar(app.HUChange);
+            
+            set(app.DAIWingUIFigure, 'WindowButtonMotionFcn', @(src, event) updateCoordinates(app));
+        end
+
+        % Menu selected function: WHCCTPImagesMenu
+        function WHCCTPImagesMenuSelected(app, event)
+            app.scannerType = convertStringsToChars(app.scannerName(4));
+            WHCImagesLoader(app);
+        end
+
+        % Value changing function: WHCTimePointsSlider
+        function WHCTimePointsSliderValueChanging(app, event)
+            timePointsLimit = size(app.whcImageSet,2);
+            if (round(event.Value) > timePointsLimit)
+                changingValue = timePointsLimit;
+            else
+                if (round(event.Value) == 0)
+                    changingValue = 1;
+                else
+                    changingValue = round(event.Value);
+                end
+            end
+            app.whcCurrentTimePoint = changingValue;
+            imageFile(1:512, 1:512) = app.whcImageSet(app.whcCurrentSlice, app.whcCurrentTimePoint, 1:512, 1:512);
+            whcUpdateImageWithROI(app);
+        end
+
+        % Value changing function: WHCSlicesSlider
+        function WHCSlicesSliderValueChanging(app, event)
+            sliceLimit = size(app.whcImageSet,1);
+            if (round(event.Value) > sliceLimit)
+                changingValue = sliceLimit;
+            else
+                if (round(event.Value) == 0)
+                    changingValue = 1;
+                else
+                    changingValue = round(event.Value);
+                end
+            end
+            app.whcCurrentSlice = changingValue;
+            app.WHCSlicesSliderLabel.Text = sprintf('Slice %d/%d', app.whcCurrentSlice, size(app.whcImageSet, 1));
+            imageFile(1:512, 1:512) = app.whcImageSet(app.whcCurrentSlice, app.whcCurrentTimePoint, 1:512, 1:512);
+            whcUpdateImageWithROI(app);
+        end
+
+        % Button pushed function: whcMButton
+        function whcMButtonPushed(app, event)
+            if (strcmp(app.whcMButton.Text, 'M'))
+                app.whcMButton.Text = 'S';
+                app.whcMovieStop = false;
+                numberOfTimePoints = max(size(app.whcTimePoints));
+                i = app.whcCurrentTimePoint;
+                while(app.whcMovieStop == false)
+                    currentImage(1:512,1:512) = app.whcImageSet(app.whcCurrentSlice, i, 1:512,1:512);
+                    app.WHCTimePointsSlider.Value = i;
+                    whcUpdateImageWithROI(app);
+                    pause(app.movieFrameDuration);
+                    i = i + 1;
+                    if (i == numberOfTimePoints)
+                        i = 1;
+                    end
+                    app.whcCurrentTimePoint = i;
+                end
+            elseif (strcmp(app.whcMButton.Text, 'S'))
+                app.whcMButton.Text = 'M';
+                app.whcMovieStop = true;
+            end
+        end
+
+        % Button pushed function: whcSetWindowButton
+        function whcSetWindowButtonPushed(app, event)
+            level = str2double(app.whcSetWindowLevel.Value{1});
+            width = str2double(app.whcSetWindowWidth.Value{1});
+            app.whcMinWindow = level - width / 2;
+            app.whcMaxWindow = level + width / 2;
+            imagesc(app.WHCImageAxes, app.imWHC, [app.whcMinWindow, app.whcMaxWindow]);
+        end
+
+        % Button pushed function: whcSetPreLesionButton
+        function whcSetPreLesionButtonPushed(app, event)
+            zoom(app.WHCImageAxes, 'off');
+
+            app.whcPreCurrentTimePoint = app.whcCurrentTimePoint;
+            segmentationWindowSize = 25;
+
+            if (strcmp(app.whcSamplingROIDropDown.Value, 'Freehand'))
+                app.whcPtsPre = drawfreehand(app.WHCImageAxes);
+                app.whcPtsPre.Position = round(app.whcPtsPre.Position);
+                app.whcPointObjectPre = [app.whcCurrentSlice, app.whcCurrentTimePoint, round(app.whcPtsPre.Position(1,:)), round(app.whcPtsPre.Position(2,:))];
+                % FreeHand Writing Case:
+                % The order of getting contour is flipped in this case, as
+                % we first need to get contour and then calculate the
+                % sample.
+                [imageWithContour, radiusIncm, areaOfContourInCmSq, app.whcSxPre, app.whcSyPre] = getContour(app.whcPtsPre.Position(:,2),app.whcPtsPre.Position(:,1),segmentationWindowSize,app.whcCurrentSlice, app.whcPreCurrentTimePoint, app.whcImageSet, app.whcDicomInfo.PixelSpacing);      
+                [app.numberOfIsotropicPixelsPre, app.whcPreCurve, app.areaOfAnIsotropicPixel] = wGetIsotropicPixelsWithinContour(app.whcSxPre, app.whcSyPre, app.whcImageSet, app.whcCurrentSlice, app.whcDicomInfo);
+                app.whcContourSliceNumberPre = app.whcCurrentSlice;
+            else
+                app.whcPtsPre = drawpoint(app.WHCImageAxes);
+                app.whcPointObjectPre = [app.whcCurrentSlice, app.whcCurrentTimePoint, round(app.whcPtsPre.Position(2)), round(app.whcPtsPre.Position(1))];
+                app.whcFittedCurvePre = zeros(size(app.whcTimePoints));
+                
+                [app.whcPreCurve, app.whcInterpolatedSampledPointsPre, app.whcInterpolatedTimePoints, app.whcSxPre, app.whcSyPre, app.whcRxPre, app.whcRyPre] = getBestSample(app.whcPointObjectPre(3), app.whcPointObjectPre(4), app.whcSearchROI, app.whcSamplingROIM, app.whcSamplingROIN, app.whcCurrentSlice, app.whcImageSet, app.whcPreLesionTimePoints);
+                [imageWithContour, radiusIncm, areaOfContourInCmSq] = getContour(app.whcPointObjectPre(3), app.whcPointObjectPre(4), segmentationWindowSize, app.whcCurrentSlice, app.whcPreCurrentTimePoint, app.whcImageSet, app.whcDicomInfo.PixelSpacing);
+            end
+
+            imageData(1:512, 1:512) = app.whcImageSet(app.whcCurrentSlice,app.whcCurrentTimePoint,1:512,1:512);
+            imageWithContour = getROIOverlayed(imageData, app.whcSxPre, app.whcSyPre);
+            updateimageWHC(app,imageData);
+            hold(app.WHCImageAxes, 'on');
+            plot(app.WHCImageAxes, app.whcSyPre, app.whcSxPre, 'b.', 'MarkerSize', 1);
+            hold(app.WHCImageAxes, 'off');
+            whcDrawPreLesionCurve(app);
+        end
+
+        % Button pushed function: whcSetPostLesionButton
+        function whcSetPostLesionButtonPushed(app, event)
+            zoom(app.WHCImageAxes, 'off');
+
+            app.whcPostCurrentTimePoint = app.whcCurrentTimePoint;
+            segmentationWindowSize = 25;
+
+            if (strcmp(app.whcSamplingROIDropDown.Value, 'Freehand'))
+                app.whcPtsPost = drawfreehand(app.WHCImageAxes);
+                app.whcPtsPost.Position = round(app.whcPtsPost.Position);
+                app.whcPointObjectPost = [app.whcCurrentSlice, app.whcCurrentTimePoint, round(app.whcPtsPost.Position(1,:)), round(app.whcPtsPost.Position(2,:))];
+                % FreeHand Writing Case:
+                % The order of getting contour is flipped in this case, as
+                % we first need to get contour and then calculate the
+                % sample.
+                [imageWithContour, radiusIncm, areaOfContourInCmSq, app.whcSxPost, app.whcSyPost] = getContour(app.whcPtsPost.Position(:,2),app.whcPtsPost.Position(:,1),segmentationWindowSize,app.whcCurrentSlice, app.whcPostCurrentTimePoint, app.whcImageSet, app.whcDicomInfo.PixelSpacing);      
+                [app.numberOfIsotropicPixelsPost, app.whcPostCurve, app.areaOfAnIsotropicPixel] = wGetIsotropicPixelsWithinContour(app.whcSxPost, app.whcSyPost, app.whcImageSet, app.whcCurrentSlice, app.whcDicomInfo);
+                app.whcContourSliceNumberPost = app.whcCurrentSlice;
+            else
+                app.whcPtsPost = drawpoint(app.WHCImageAxes);
+                app.whcPointObjectPost = [app.whcCurrentSlice, app.whcCurrentTimePoint, round(app.whcPtsPost.Position(2)), round(app.whcPtsPost.Position(1))];
+                app.whcFittedCurvePost = zeros(size(app.whcTimePoints));
+                
+                [app.whcPostCurve, app.whcInterpolatedSampledPointsPost, app.whcInterpolatedTimePoints, app.whcSxPost, app.whcSyPost, app.whcRxPost, app.whcRyPost] = getBestSample(app.whcPointObjectPost(3), app.whcPointObjectPost(4), app.whcSearchROI, app.whcSamplingROIM, app.whcSamplingROIN, app.whcCurrentSlice, app.whcImageSet, app.whcPostLesionTimePoints);
+                [imageWithContour, radiusIncm, areaOfContourInCmSq] = getContour(app.whcPointObjectPost(3), app.whcPointObjectPost(4), segmentationWindowSize, app.whcCurrentSlice, app.whcPostCurrentTimePoint, app.whcImageSet, app.whcDicomInfo.PixelSpacing);
+            end
+
+            imageData(1:512, 1:512) = app.whcImageSet(app.whcCurrentSlice,app.whcCurrentTimePoint,1:512,1:512);
+            imageWithContour = getROIOverlayed(imageData, app.whcSxPost, app.whcSyPost);
+            updateimageWHC(app,imageData);
+            hold(app.WHCImageAxes, 'on');
+            plot(app.WHCImageAxes, app.whcSyPost, app.whcSxPost, 'r.', 'MarkerSize', 1);
+            hold(app.WHCImageAxes, 'off');
+            whcDrawPostLesionCurve(app);
+        end
+    end
+
+    % Component initialization
+    methods (Access = private)
+
+        % Create UIFigure and components
+        function createComponents(app)
+
+            % Create DAIWingUIFigure and hide until all components are created
+            app.DAIWingUIFigure = uifigure('Visible', 'off');
+            app.DAIWingUIFigure.Position = [100 100 1672 909];
+            app.DAIWingUIFigure.Name = 'DAI - Wing';
+
+            % Create LoadMenu
+            app.LoadMenu = uimenu(app.DAIWingUIFigure);
+            app.LoadMenu.Text = 'Load';
+
+            % Create FirstPassCTPImagesMenu
+            app.FirstPassCTPImagesMenu = uimenu(app.LoadMenu);
+            app.FirstPassCTPImagesMenu.Text = 'First Pass CTP Images';
+
+            % Create ScannerModelMenu
+            app.ScannerModelMenu = uimenu(app.FirstPassCTPImagesMenu);
+            app.ScannerModelMenu.Text = 'Scanner Model';
+
+            % Create SiemensMenu
+            app.SiemensMenu = uimenu(app.ScannerModelMenu);
+            app.SiemensMenu.MenuSelectedFcn = createCallbackFcn(app, @SiemensMenuSelected, true);
+            app.SiemensMenu.Text = 'Siemens';
+
+            % Create CanonMenu
+            app.CanonMenu = uimenu(app.ScannerModelMenu);
+            app.CanonMenu.MenuSelectedFcn = createCallbackFcn(app, @CanonMenuSelected, true);
+            app.CanonMenu.Text = 'Canon';
+
+            % Create GEMenu
+            app.GEMenu = uimenu(app.ScannerModelMenu);
+            app.GEMenu.MenuSelectedFcn = createCallbackFcn(app, @GEMenuSelected, true);
+            app.GEMenu.Text = 'GE';
+
+            % Create WHCCTPImagesMenu
+            app.WHCCTPImagesMenu = uimenu(app.LoadMenu);
+            app.WHCCTPImagesMenu.MenuSelectedFcn = createCallbackFcn(app, @WHCCTPImagesMenuSelected, true);
+            app.WHCCTPImagesMenu.Text = 'WHC CTP Images';
+
+            % Create ImageAxes
+            app.ImageAxes = uiaxes(app.DAIWingUIFigure);
+            app.ImageAxes.XTick = [];
+            app.ImageAxes.XTickLabel = {'[ ]'};
+            app.ImageAxes.YTick = [];
+            app.ImageAxes.Position = [26 398 463 424];
+
+            % Create postLesionPlotArea
+            app.postLesionPlotArea = uiaxes(app.DAIWingUIFigure);
+            title(app.postLesionPlotArea, 'Post-lesion Curve')
+            xlabel(app.postLesionPlotArea, 'Time(s)')
+            ylabel(app.postLesionPlotArea, 'Enhancement(HU)')
+            app.postLesionPlotArea.XLim = [1 10];
+            app.postLesionPlotArea.YLim = [-50 500];
+            app.postLesionPlotArea.XTick = [1 2 3 4 5 6 7 8 9 10];
+            app.postLesionPlotArea.YTick = [-50 50 150 250 350 450];
+            app.postLesionPlotArea.Position = [1149 112 459 309];
+
+            % Create preLesionPlotArea
+            app.preLesionPlotArea = uiaxes(app.DAIWingUIFigure);
+            title(app.preLesionPlotArea, 'Pre-lesion Curve')
+            xlabel(app.preLesionPlotArea, 'Time (s)')
+            ylabel(app.preLesionPlotArea, 'Enhancement(HU)')
+            app.preLesionPlotArea.XLim = [1 10];
+            app.preLesionPlotArea.YLim = [-50 500];
+            app.preLesionPlotArea.XTick = [1 2 3 4 5 6 7 8 9 10];
+            app.preLesionPlotArea.YTick = [-50 50 150 250 350 450];
+            app.preLesionPlotArea.Position = [1149 483 459 309];
+
+            % Create WHCImageAxes
+            app.WHCImageAxes = uiaxes(app.DAIWingUIFigure);
+            app.WHCImageAxes.XTick = [];
+            app.WHCImageAxes.XTickLabel = {'[ ]'};
+            app.WHCImageAxes.YTick = [];
+            app.WHCImageAxes.Position = [576 399 463 424];
+
+            % Create OutputParametersPanel
+            app.OutputParametersPanel = uipanel(app.DAIWingUIFigure);
+            app.OutputParametersPanel.Title = 'Output Parameters';
+            app.OutputParametersPanel.Position = [328 168 336 138];
+
+            % Create SaveResultButton
+            app.SaveResultButton = uibutton(app.OutputParametersPanel, 'push');
+            app.SaveResultButton.Position = [8 11 81 22];
+            app.SaveResultButton.Text = 'Save Result';
+
+            % Create InputParametersPanel
+            app.InputParametersPanel = uipanel(app.DAIWingUIFigure);
+            app.InputParametersPanel.Title = 'Input Parameters';
+            app.InputParametersPanel.Position = [35 7 279 298];
+
+            % Create CalculateButton
+            app.CalculateButton = uibutton(app.InputParametersPanel, 'push');
+            app.CalculateButton.ButtonPushedFcn = createCallbackFcn(app, @CalculateButtonPushed, true);
+            app.CalculateButton.Position = [90 15 100 22];
+            app.CalculateButton.Text = 'Calculate';
+
+            % Create PreAorticValveAreacm2Label
+            app.PreAorticValveAreacm2Label = uilabel(app.InputParametersPanel);
+            app.PreAorticValveAreacm2Label.Interpreter = 'latex';
+            app.PreAorticValveAreacm2Label.Position = [12 239 166 22];
+            app.PreAorticValveAreacm2Label.Text = 'Pre Aortic Valve Area ($cm^2$)';
+
+            % Create AorticValveAreacm2PreEditField
+            app.AorticValveAreacm2PreEditField = uieditfield(app.InputParametersPanel, 'numeric');
+            app.AorticValveAreacm2PreEditField.Position = [226 239 43 22];
+            app.AorticValveAreacm2PreEditField.Value = 0.9;
+
+            % Create AorticValveAreacm2PostEditField
+            app.AorticValveAreacm2PostEditField = uieditfield(app.InputParametersPanel, 'numeric');
+            app.AorticValveAreacm2PostEditField.Position = [226 209 43 22];
+            app.AorticValveAreacm2PostEditField.Value = 0.9;
+
+            % Create PostAorticValveAreacm2Label
+            app.PostAorticValveAreacm2Label = uilabel(app.InputParametersPanel);
+            app.PostAorticValveAreacm2Label.Interpreter = 'latex';
+            app.PostAorticValveAreacm2Label.Position = [12 209 171 22];
+            app.PostAorticValveAreacm2Label.Text = 'Post Aortic Valve Area ($cm^2$)';
+
+            % Create PreTracerPercentageLabel
+            app.PreTracerPercentageLabel = uilabel(app.InputParametersPanel);
+            app.PreTracerPercentageLabel.Interpreter = 'latex';
+            app.PreTracerPercentageLabel.Position = [13 179 154 22];
+            app.PreTracerPercentageLabel.Text = 'Pre Tracer Percentage (\%)';
+
+            % Create PreTracerPercentageEditField
+            app.PreTracerPercentageEditField = uieditfield(app.InputParametersPanel, 'numeric');
+            app.PreTracerPercentageEditField.Position = [226 179 43 22];
+            app.PreTracerPercentageEditField.Value = 1.176;
+
+            % Create PostTracerPercentageLabel
+            app.PostTracerPercentageLabel = uilabel(app.InputParametersPanel);
+            app.PostTracerPercentageLabel.Interpreter = 'latex';
+            app.PostTracerPercentageLabel.Position = [13 149 159 22];
+            app.PostTracerPercentageLabel.Text = 'Post Tracer Percentage (\%)';
+
+            % Create PostTracerPercentageEditField
+            app.PostTracerPercentageEditField = uieditfield(app.InputParametersPanel, 'numeric');
+            app.PostTracerPercentageEditField.Position = [226 149 43 22];
+            app.PostTracerPercentageEditField.Value = 0.976;
+
+            % Create TimePointsSlider
+            app.TimePointsSlider = uislider(app.DAIWingUIFigure);
+            app.TimePointsSlider.Limits = [1 10];
+            app.TimePointsSlider.MajorTicks = [1 2 3 4 5 6 7 8 9 10];
+            app.TimePointsSlider.MajorTickLabels = {'1', '2', '3', '4', '5', '6', '7', '8', '9', '10'};
+            app.TimePointsSlider.ValueChangingFcn = createCallbackFcn(app, @TimePointsSliderValueChanging, true);
+            app.TimePointsSlider.MinorTicks = [];
+            app.TimePointsSlider.Position = [114 387 367 3];
+            app.TimePointsSlider.Value = 1;
+
+            % Create SlicesSlider
+            app.SlicesSlider = uislider(app.DAIWingUIFigure);
+            app.SlicesSlider.Limits = [1 52];
+            app.SlicesSlider.Orientation = 'vertical';
+            app.SlicesSlider.ValueChangingFcn = createCallbackFcn(app, @SlicesSliderValueChanging, true);
+            app.SlicesSlider.MinorTicks = [1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52];
+            app.SlicesSlider.Position = [498 408 3 401];
+            app.SlicesSlider.Value = 1;
+
+            % Create TimePointsSliderLabel
+            app.TimePointsSliderLabel = uilabel(app.DAIWingUIFigure);
+            app.TimePointsSliderLabel.HorizontalAlignment = 'right';
+            app.TimePointsSliderLabel.Position = [35 368 68 22];
+            app.TimePointsSliderLabel.Text = 'Time Points';
+
+            % Create SlicesSliderLabel
+            app.SlicesSliderLabel = uilabel(app.DAIWingUIFigure);
+            app.SlicesSliderLabel.Position = [497 377 94 22];
+            app.SlicesSliderLabel.Text = 'Slices';
+
+            % Create SetPreLesionButton
+            app.SetPreLesionButton = uibutton(app.DAIWingUIFigure, 'push');
+            app.SetPreLesionButton.ButtonPushedFcn = createCallbackFcn(app, @SetPreLesionButtonPushed, true);
+            app.SetPreLesionButton.Position = [353 323 67 22];
+            app.SetPreLesionButton.Text = 'Pre-Lesion';
+
+            % Create SetPostLesionButton
+            app.SetPostLesionButton = uibutton(app.DAIWingUIFigure, 'push');
+            app.SetPostLesionButton.ButtonPushedFcn = createCallbackFcn(app, @SetPostLesionButtonPushed, true);
+            app.SetPostLesionButton.Position = [427 323 72 22];
+            app.SetPostLesionButton.Text = 'Post-Lesion';
+
+            % Create SetWindowLevel
+            app.SetWindowLevel = uitextarea(app.DAIWingUIFigure);
+            app.SetWindowLevel.Placeholder = 'Level';
+            app.SetWindowLevel.Position = [36 322 41 24];
+
+            % Create SetWindowButton
+            app.SetWindowButton = uibutton(app.DAIWingUIFigure, 'push');
+            app.SetWindowButton.ButtonPushedFcn = createCallbackFcn(app, @SetWindowButtonPushed, true);
+            app.SetWindowButton.Position = [133 323 38 22];
+            app.SetWindowButton.Text = 'Set';
+
+            % Create SetWindowWidth
+            app.SetWindowWidth = uitextarea(app.DAIWingUIFigure);
+            app.SetWindowWidth.Placeholder = 'Width';
+            app.SetWindowWidth.Position = [84 322 44 24];
+
+            % Create SamplingROIDropDown
+            app.SamplingROIDropDown = uidropdown(app.DAIWingUIFigure);
+            app.SamplingROIDropDown.Items = {'Freehand', '2x2', '3x3', '2x1', '1x2', '1x1', '20x20', '30x30', '40x40'};
+            app.SamplingROIDropDown.ValueChangedFcn = createCallbackFcn(app, @SamplingROIDropDownValueChanged, true);
+            app.SamplingROIDropDown.Position = [258 323 86 22];
+            app.SamplingROIDropDown.Value = 'Freehand';
+
+            % Create SamplingROIDropDownLabel
+            app.SamplingROIDropDownLabel = uilabel(app.DAIWingUIFigure);
+            app.SamplingROIDropDownLabel.Position = [177 323 80 22];
+            app.SamplingROIDropDownLabel.Text = 'Sampling ROI';
+
+            % Create ContrastVolumemLEditField
+            app.ContrastVolumemLEditField = uieditfield(app.DAIWingUIFigure, 'numeric');
+            app.ContrastVolumemLEditField.Position = [261 128 43 22];
+            app.ContrastVolumemLEditField.Value = 50;
+
+            % Create ContrastVolumemLEditFieldLabel
+            app.ContrastVolumemLEditFieldLabel = uilabel(app.DAIWingUIFigure);
+            app.ContrastVolumemLEditFieldLabel.Interpreter = 'latex';
+            app.ContrastVolumemLEditFieldLabel.Position = [48 128 135 22];
+            app.ContrastVolumemLEditFieldLabel.Text = 'Contrast Volume (mL)';
+
+            % Create ContrastConcentrationmgImLEditField
+            app.ContrastConcentrationmgImLEditField = uieditfield(app.DAIWingUIFigure, 'numeric');
+            app.ContrastConcentrationmgImLEditField.Position = [261 101 43 22];
+            app.ContrastConcentrationmgImLEditField.Value = 370;
+
+            % Create ContrastConcentrationmgImLEditFieldLabel
+            app.ContrastConcentrationmgImLEditFieldLabel = uilabel(app.DAIWingUIFigure);
+            app.ContrastConcentrationmgImLEditFieldLabel.Interpreter = 'latex';
+            app.ContrastConcentrationmgImLEditFieldLabel.Position = [47 101 197 22];
+            app.ContrastConcentrationmgImLEditFieldLabel.Text = 'Contrast Concentration (mgI/mL)';
+
+            % Create ConversionFactorHUpermgImLEditField
+            app.ConversionFactorHUpermgImLEditField = uieditfield(app.DAIWingUIFigure, 'numeric');
+            app.ConversionFactorHUpermgImLEditField.Position = [261 72 43 22];
+            app.ConversionFactorHUpermgImLEditField.Value = 30;
+
+            % Create ConversionFactorHUpermgImLEditFieldLabel
+            app.ConversionFactorHUpermgImLEditFieldLabel = uilabel(app.DAIWingUIFigure);
+            app.ConversionFactorHUpermgImLEditFieldLabel.Interpreter = 'latex';
+            app.ConversionFactorHUpermgImLEditFieldLabel.Position = [46 72 211 22];
+            app.ConversionFactorHUpermgImLEditFieldLabel.Text = 'Conversion Factor (HU per mgI/mL)';
+
+            % Create PreLesionMeanFlowVelocitycmsEditFieldLabel
+            app.PreLesionMeanFlowVelocitycmsEditFieldLabel = uilabel(app.DAIWingUIFigure);
+            app.PreLesionMeanFlowVelocitycmsEditFieldLabel.Interpreter = 'latex';
+            app.PreLesionMeanFlowVelocitycmsEditFieldLabel.HorizontalAlignment = 'right';
+            app.PreLesionMeanFlowVelocitycmsEditFieldLabel.Position = [329 244 225 22];
+            app.PreLesionMeanFlowVelocitycmsEditFieldLabel.Text = 'Pre-Lesion Mean Flow Velocity (cm/s)';
+
+            % Create PreLesionMeanFlowVelocitycmsEditField
+            app.PreLesionMeanFlowVelocitycmsEditField = uieditfield(app.DAIWingUIFigure, 'numeric');
+            app.PreLesionMeanFlowVelocitycmsEditField.Position = [566 244 55 22];
+
+            % Create PostLesionMeanFlowVelocitycmsEditFieldLabel
+            app.PostLesionMeanFlowVelocitycmsEditFieldLabel = uilabel(app.DAIWingUIFigure);
+            app.PostLesionMeanFlowVelocitycmsEditFieldLabel.Interpreter = 'latex';
+            app.PostLesionMeanFlowVelocitycmsEditFieldLabel.HorizontalAlignment = 'right';
+            app.PostLesionMeanFlowVelocitycmsEditFieldLabel.Position = [326 214 233 22];
+            app.PostLesionMeanFlowVelocitycmsEditFieldLabel.Text = 'Post-Lesion Mean Flow Velocity (cm/s)';
+
+            % Create PostLesionMeanFlowVelocitycmsEditField
+            app.PostLesionMeanFlowVelocitycmsEditField = uieditfield(app.DAIWingUIFigure, 'numeric');
+            app.PostLesionMeanFlowVelocitycmsEditField.Position = [566 214 55 22];
+
+            % Create AverageBloodFlowAssessmentLabel
+            app.AverageBloodFlowAssessmentLabel = uilabel(app.DAIWingUIFigure);
+            app.AverageBloodFlowAssessmentLabel.HorizontalAlignment = 'center';
+            app.AverageBloodFlowAssessmentLabel.FontSize = 18;
+            app.AverageBloodFlowAssessmentLabel.FontWeight = 'bold';
+            app.AverageBloodFlowAssessmentLabel.FontColor = [0 0.4471 0.7412];
+            app.AverageBloodFlowAssessmentLabel.Position = [436 848 291 22];
+            app.AverageBloodFlowAssessmentLabel.Text = 'Average Blood Flow Assessment';
+
+            % Create FitPreCurvesButton
+            app.FitPreCurvesButton = uibutton(app.DAIWingUIFigure, 'push');
+            app.FitPreCurvesButton.ButtonPushedFcn = createCallbackFcn(app, @FitPreCurvesButtonPushed, true);
+            app.FitPreCurvesButton.Position = [1196 800 66 22];
+            app.FitPreCurvesButton.Text = 'Fit Curves';
+
+            % Create ManualPreBaselineInput
+            app.ManualPreBaselineInput = uitextarea(app.DAIWingUIFigure);
+            app.ManualPreBaselineInput.Position = [1452 800 35 23];
+
+            % Create ManualPreWashoutInput
+            app.ManualPreWashoutInput = uitextarea(app.DAIWingUIFigure);
+            app.ManualPreWashoutInput.Position = [1563 800 35 23];
+
+            % Create PreBaselineLabel
+            app.PreBaselineLabel = uilabel(app.DAIWingUIFigure);
+            app.PreBaselineLabel.HorizontalAlignment = 'center';
+            app.PreBaselineLabel.Position = [1396 800 52 22];
+            app.PreBaselineLabel.Text = 'Baseline';
+
+            % Create PreWashoutLabel
+            app.PreWashoutLabel = uilabel(app.DAIWingUIFigure);
+            app.PreWashoutLabel.HorizontalAlignment = 'center';
+            app.PreWashoutLabel.Position = [1503 800 52 22];
+            app.PreWashoutLabel.Text = 'Washout';
+
+            % Create FitPostCurvesButton
+            app.FitPostCurvesButton = uibutton(app.DAIWingUIFigure, 'push');
+            app.FitPostCurvesButton.ButtonPushedFcn = createCallbackFcn(app, @FitPostCurvesButtonPushed, true);
+            app.FitPostCurvesButton.Position = [1196 430 66 22];
+            app.FitPostCurvesButton.Text = 'Fit Curves';
+
+            % Create PostBaselineLabel
+            app.PostBaselineLabel = uilabel(app.DAIWingUIFigure);
+            app.PostBaselineLabel.HorizontalAlignment = 'center';
+            app.PostBaselineLabel.Position = [1396 430 52 22];
+            app.PostBaselineLabel.Text = 'Baseline';
+
+            % Create ManualPostBaselineInput
+            app.ManualPostBaselineInput = uitextarea(app.DAIWingUIFigure);
+            app.ManualPostBaselineInput.Position = [1452 430 35 23];
+
+            % Create PostWashoutLabel
+            app.PostWashoutLabel = uilabel(app.DAIWingUIFigure);
+            app.PostWashoutLabel.HorizontalAlignment = 'center';
+            app.PostWashoutLabel.Position = [1503 430 52 22];
+            app.PostWashoutLabel.Text = 'Washout';
+
+            % Create ManualPostWashoutInput
+            app.ManualPostWashoutInput = uitextarea(app.DAIWingUIFigure);
+            app.ManualPostWashoutInput.Position = [1563 430 35 23];
+
+            % Create MButton
+            app.MButton = uibutton(app.DAIWingUIFigure, 'push');
+            app.MButton.ButtonPushedFcn = createCallbackFcn(app, @MButtonPushed, true);
+            app.MButton.Position = [504 323 20 22];
+            app.MButton.Text = 'M';
+
+            % Create HUChangesPanel
+            app.HUChangesPanel = uipanel(app.DAIWingUIFigure);
+            app.HUChangesPanel.Title = 'HU Changes';
+            app.HUChangesPanel.Position = [329 7 335 153];
+
+            % Create HUChange
+            app.HUChange = uiaxes(app.HUChangesPanel);
+            title(app.HUChange, 'HU Changes')
+            app.HUChange.Toolbar.Visible = 'off';
+            app.HUChange.XColor = 'none';
+            app.HUChange.XTick = [];
+            app.HUChange.XTickLabel = '';
+            app.HUChange.YColor = 'none';
+            app.HUChange.YTick = [];
+            app.HUChange.Color = 'none';
+            app.HUChange.Position = [151 6 171 122];
+
+            % Create HUChangeButton
+            app.HUChangeButton = uibutton(app.HUChangesPanel, 'push');
+            app.HUChangeButton.ButtonPushedFcn = createCallbackFcn(app, @HUChangeButtonPushed, true);
+            app.HUChangeButton.Position = [12 15 76 22];
+            app.HUChangeButton.Text = 'HU Change';
+
+            % Create T1EditFieldLabel
+            app.T1EditFieldLabel = uilabel(app.HUChangesPanel);
+            app.T1EditFieldLabel.HorizontalAlignment = 'right';
+            app.T1EditFieldLabel.Position = [15 85 25 22];
+            app.T1EditFieldLabel.Text = 'T1';
+
+            % Create T1EditField
+            app.T1EditField = uieditfield(app.HUChangesPanel, 'numeric');
+            app.T1EditField.Position = [53 85 25 22];
+
+            % Create T2EditFieldLabel
+            app.T2EditFieldLabel = uilabel(app.HUChangesPanel);
+            app.T2EditFieldLabel.HorizontalAlignment = 'right';
+            app.T2EditFieldLabel.Position = [14 56 25 22];
+            app.T2EditFieldLabel.Text = 'T2';
+
+            % Create T2EditField
+            app.T2EditField = uieditfield(app.HUChangesPanel, 'numeric');
+            app.T2EditField.Position = [52 56 25 22];
+
+            % Create SlopeDisplay
+            app.SlopeDisplay = uitextarea(app.HUChangesPanel);
+            app.SlopeDisplay.Editable = 'off';
+            app.SlopeDisplay.BackgroundColor = [0.9412 0.9412 0.9412];
+            app.SlopeDisplay.Visible = 'off';
+            app.SlopeDisplay.Position = [95 68 51 27];
+
+            % Create DynamicAngiographicImagingDAIWingPanel
+            app.DynamicAngiographicImagingDAIWingPanel = uipanel(app.DAIWingUIFigure);
+            app.DynamicAngiographicImagingDAIWingPanel.AutoResizeChildren = 'off';
+            app.DynamicAngiographicImagingDAIWingPanel.ForegroundColor = [0 0.4471 0.7412];
+            app.DynamicAngiographicImagingDAIWingPanel.BorderType = 'none';
+            app.DynamicAngiographicImagingDAIWingPanel.Title = 'Dynamic Angiographic Imaging (DAI) - Wing';
+            app.DynamicAngiographicImagingDAIWingPanel.FontWeight = 'bold';
+            app.DynamicAngiographicImagingDAIWingPanel.FontSize = 16;
+            app.DynamicAngiographicImagingDAIWingPanel.Position = [10 870 1047 30];
+
+            % Create SosLabPropertyLabelStressOnly
+            app.SosLabPropertyLabelStressOnly = uilabel(app.DAIWingUIFigure);
+            app.SosLabPropertyLabelStressOnly.HorizontalAlignment = 'right';
+            app.SosLabPropertyLabelStressOnly.FontSize = 10;
+            app.SosLabPropertyLabelStressOnly.Position = [974 891 82 22];
+            app.SosLabPropertyLabelStressOnly.Text = 'So''s Lab Property';
+
+            % Create UnauthorizedUseisProhibitedLabelStressOnly
+            app.UnauthorizedUseisProhibitedLabelStressOnly = uilabel(app.DAIWingUIFigure);
+            app.UnauthorizedUseisProhibitedLabelStressOnly.HorizontalAlignment = 'right';
+            app.UnauthorizedUseisProhibitedLabelStressOnly.WordWrap = 'on';
+            app.UnauthorizedUseisProhibitedLabelStressOnly.FontSize = 10;
+            app.UnauthorizedUseisProhibitedLabelStressOnly.FontColor = [1 0 0];
+            app.UnauthorizedUseisProhibitedLabelStressOnly.Position = [871 885 186 14];
+            app.UnauthorizedUseisProhibitedLabelStressOnly.Text = 'Unauthorized Use is Prohibited';
+
+            % Create WHCTimePointsSlider
+            app.WHCTimePointsSlider = uislider(app.DAIWingUIFigure);
+            app.WHCTimePointsSlider.Limits = [1 10];
+            app.WHCTimePointsSlider.MajorTicks = [1 2 3 4 5 6 7 8 9 10];
+            app.WHCTimePointsSlider.MajorTickLabels = {'1', '2', '3', '4', '5', '6', '7', '8', '9', '10'};
+            app.WHCTimePointsSlider.ValueChangingFcn = createCallbackFcn(app, @WHCTimePointsSliderValueChanging, true);
+            app.WHCTimePointsSlider.MinorTicks = [];
+            app.WHCTimePointsSlider.Position = [664 388 367 3];
+            app.WHCTimePointsSlider.Value = 1;
+
+            % Create WHCSlicesSlider
+            app.WHCSlicesSlider = uislider(app.DAIWingUIFigure);
+            app.WHCSlicesSlider.Limits = [1 52];
+            app.WHCSlicesSlider.Orientation = 'vertical';
+            app.WHCSlicesSlider.ValueChangingFcn = createCallbackFcn(app, @WHCSlicesSliderValueChanging, true);
+            app.WHCSlicesSlider.MinorTicks = [1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52];
+            app.WHCSlicesSlider.Position = [1048 409 3 401];
+            app.WHCSlicesSlider.Value = 1;
+
+            % Create WHCTimePointsSliderLabel
+            app.WHCTimePointsSliderLabel = uilabel(app.DAIWingUIFigure);
+            app.WHCTimePointsSliderLabel.HorizontalAlignment = 'right';
+            app.WHCTimePointsSliderLabel.Position = [585 369 68 22];
+            app.WHCTimePointsSliderLabel.Text = 'Time Points';
+
+            % Create WHCSlicesSliderLabel
+            app.WHCSlicesSliderLabel = uilabel(app.DAIWingUIFigure);
+            app.WHCSlicesSliderLabel.Position = [1037 378 94 22];
+            app.WHCSlicesSliderLabel.Text = 'Slices';
+
+            % Create whcSetPreLesionButton
+            app.whcSetPreLesionButton = uibutton(app.DAIWingUIFigure, 'push');
+            app.whcSetPreLesionButton.ButtonPushedFcn = createCallbackFcn(app, @whcSetPreLesionButtonPushed, true);
+            app.whcSetPreLesionButton.Position = [903 324 67 22];
+            app.whcSetPreLesionButton.Text = 'Pre-Lesion';
+
+            % Create whcSetPostLesionButton
+            app.whcSetPostLesionButton = uibutton(app.DAIWingUIFigure, 'push');
+            app.whcSetPostLesionButton.ButtonPushedFcn = createCallbackFcn(app, @whcSetPostLesionButtonPushed, true);
+            app.whcSetPostLesionButton.Position = [977 324 72 22];
+            app.whcSetPostLesionButton.Text = 'Post-Lesion';
+
+            % Create whcSetWindowLevel
+            app.whcSetWindowLevel = uitextarea(app.DAIWingUIFigure);
+            app.whcSetWindowLevel.Placeholder = 'Level';
+            app.whcSetWindowLevel.Position = [586 323 41 24];
+
+            % Create whcSetWindowButton
+            app.whcSetWindowButton = uibutton(app.DAIWingUIFigure, 'push');
+            app.whcSetWindowButton.ButtonPushedFcn = createCallbackFcn(app, @whcSetWindowButtonPushed, true);
+            app.whcSetWindowButton.Position = [683 324 38 22];
+            app.whcSetWindowButton.Text = 'Set';
+
+            % Create whcSetWindowWidth
+            app.whcSetWindowWidth = uitextarea(app.DAIWingUIFigure);
+            app.whcSetWindowWidth.Placeholder = 'Width';
+            app.whcSetWindowWidth.Position = [634 323 44 24];
+
+            % Create whcSamplingROIDropDown
+            app.whcSamplingROIDropDown = uidropdown(app.DAIWingUIFigure);
+            app.whcSamplingROIDropDown.Items = {'Freehand', '2x2', '3x3', '2x1', '1x2', '1x1', '20x20', '30x30', '40x40'};
+            app.whcSamplingROIDropDown.Position = [808 324 86 22];
+            app.whcSamplingROIDropDown.Value = 'Freehand';
+
+            % Create whcSamplingROIDropDownLabel
+            app.whcSamplingROIDropDownLabel = uilabel(app.DAIWingUIFigure);
+            app.whcSamplingROIDropDownLabel.Position = [727 324 80 22];
+            app.whcSamplingROIDropDownLabel.Text = 'Sampling ROI';
+
+            % Create whcMButton
+            app.whcMButton = uibutton(app.DAIWingUIFigure, 'push');
+            app.whcMButton.ButtonPushedFcn = createCallbackFcn(app, @whcMButtonPushed, true);
+            app.whcMButton.Position = [1054 324 20 22];
+            app.whcMButton.Text = 'M';
+
+            % Show the figure after all components are created
+            app.DAIWingUIFigure.Visible = 'on';
+        end
+    end
+
+    % App creation and deletion
+    methods (Access = public)
+
+        % Construct app
+        function app = WING
+
+            % Create UIFigure and components
+            createComponents(app)
+
+            % Register the app with App Designer
+            registerApp(app, app.DAIWingUIFigure)
+
+            % Execute the startup function
+            runStartupFcn(app, @startupFcn)
+
+            if nargout == 0
+                clear app
+            end
+        end
+
+        % Code that executes before app deletion
+        function delete(app)
+
+            % Delete UIFigure when app is deleted
+            delete(app.DAIWingUIFigure)
+        end
+    end
+end

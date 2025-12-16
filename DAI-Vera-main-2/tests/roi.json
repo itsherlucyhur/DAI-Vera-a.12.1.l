@@ -1,0 +1,40 @@
+{
+  "preRoiObject": {
+    "curveData": {
+      "x": 0,
+      "y": 0,
+      "z": 1,
+      "t": 0,
+      "curve": [0, 0],
+      "timePoints": [0, 1],
+      "FittedCurve": [0, 0],
+      "FittedTimePoints": [0, 1],
+      "FittedCurveAUC": 0,
+      "roiPoints": {
+        "x": [],
+        "y": []
+      }
+    },
+    "ExtraPointsForDistanceBreaker": [],
+    "NumberOfStenosis": 0
+  },
+  "postRoiObject": {
+    "curveData": {
+      "x": 183,
+      "y": 307,
+      "z": 1,
+      "t": 0,
+      "curve": [0, 0],
+      "timePoints": [0, 1],
+      "FittedCurve": [0, 0],
+      "FittedTimePoints": [0, 1],
+      "FittedCurveAUC": 0,
+      "roiPoints": {
+        "x": [],
+        "y": []
+      }
+    },
+    "ExtraPointsForDistanceBreaker": [],
+    "NumberOfStenosis": 0
+  }
+}

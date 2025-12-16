@@ -1,0 +1,35 @@
+[DEBUG][Qt] 04.12.2025 10:35:21 [] (unknown:0) - Session start time .......: 20251204_103521
+[DEBUG][Qt] 04.12.2025 10:35:21 [] (unknown:0) - Slicer version ...........: 5.10.0 (revision 34045 / a2b6d08) macosx-amd64 - installed release
+[DEBUG][Qt] 04.12.2025 10:35:23 [] (unknown:0) - Operating system .........: macOS / 15.3.1 / 24D70 / UTF-8 - 64-bit
+[DEBUG][Qt] 04.12.2025 10:35:23 [] (unknown:0) - Memory ...................: 8192 MB physical, 1024 MB virtual
+[DEBUG][Qt] 04.12.2025 10:35:23 [] (unknown:0) - CPU ......................:  Apple M2, 8 cores, 8 logical processors
+[DEBUG][Qt] 04.12.2025 10:35:23 [] (unknown:0) - VTK configuration ........: OpenGL2 rendering, TBB threading
+[DEBUG][Qt] 04.12.2025 10:35:23 [] (unknown:0) - Qt configuration .........: version 5.15.18, with SSL, requested OpenGL 3.2 (core profile)
+[DEBUG][Qt] 04.12.2025 10:35:23 [] (unknown:0) - DCMTK configuration ......: version 3.6.8, no SSL
+[DEBUG][Qt] 04.12.2025 10:35:23 [] (unknown:0) - Internationalization .....: disabled, language=
+[DEBUG][Qt] 04.12.2025 10:35:23 [] (unknown:0) - Developer mode ...........: disabled
+[DEBUG][Qt] 04.12.2025 10:35:23 [] (unknown:0) - Application path .........: /Applications/Slicer.app/Contents/MacOS
+[DEBUG][Qt] 04.12.2025 10:35:23 [] (unknown:0) - Additional module paths ..: /Users/chaejinhur/Downloads/DAI-Vera-P4b-main/SlicerWorkflowExt-main/DAI_Workflow, /Users/chaejinhur/Downloads/DAI-Vera-P4b-main/SlicerWorkflowExt-main/DAI_Workflow/workflow/, Extensions-34045/Sandbox/lib/Slicer-5.10/qt-loadable-modules, Extensions-34045/Sandbox/lib/Slicer-5.10/qt-scripted-modules
+[INFO][Stream] 04.12.2025 10:35:24 [] (unknown:0) -
+[INFO][Stream] 04.12.2025 10:36:20 [] (unknown:0) - Warning: Could not initialize workflow UI: name 'force_collapse_left_panel_on_startup' is not defined
+[INFO][Stream] 04.12.2025 10:36:20 [] (unknown:0) - Scene save observer has been set up - all scene saves will now be tracked.
+[DEBUG][Python] 04.12.2025 10:36:21 [Python] (/Applications/Slicer.app/Contents/lib/Slicer-5.10/qt-scripted-modules/SubjectHierarchyPlugins/AbstractScriptedSubjectHierarchyPlugin.py:40) - Scripted subject hierarchy plugin registered: SegmentEditor
+[DEBUG][Python] 04.12.2025 10:36:21 [Python] (/Applications/Slicer.app/Contents/lib/Slicer-5.10/qt-scripted-modules/SubjectHierarchyPlugins/AbstractScriptedSubjectHierarchyPlugin.py:40) - Scripted subject hierarchy plugin registered: SegmentStatistics
+[DEBUG][Qt] 04.12.2025 10:36:21 [] (unknown:0) - Switch to module:  "Welcome"
+[CRITICAL][FD] 04.12.2025 10:36:43 [] (unknown:0) - 2025-12-04 10:36:43.383 Slicer[1216:13572] +[IMKClient subclass]: chose IMKClient_Modern
+[CRITICAL][FD] 04.12.2025 10:36:43 [] (unknown:0) - 2025-12-04 10:36:43.384 Slicer[1216:13572] +[IMKInputSession subclass]: chose IMKInputSession_Modern
+[CRITICAL][FD] 04.12.2025 10:36:51 [] (unknown:0) - 2025-12-04 10:36:51.227 Slicer[1216:13572] TSM AdjustCapsLockLEDForKeyTransitionHandling - _ISSetPhysicalKeyboardCapsLockLED Inhibit
+[DEBUG][Qt] 04.12.2025 10:36:53 [] (unknown:0) - Switch to module:  "workflow"
+[INFO][Stream] 04.12.2025 10:36:53 [] (unknown:0) - Warning: Could not hide dock widgets: 'str' object is not callable
+[INFO][Stream] 04.12.2025 10:36:53 [] (unknown:0) - Warning: Could not hide panel-related widgets: 'str' object is not callable
+[INFO][Stream] 04.12.2025 10:36:53 [] (unknown:0) - Checking for source file: /Users/chaejinhur/source_slicer.txt
+[INFO][Stream] 04.12.2025 10:36:53 [] (unknown:0) - No source_slicer.txt file found in user directory
+[DEBUG][Qt] 04.12.2025 10:36:57 [] (unknown:0) - Switch to module:  "DICOM"
+[CRITICAL][Stream] 04.12.2025 10:36:57 [] (unknown:0) - Database folder does not contain ctkDICOM.sql file: /
+[WARNING][Qt] 04.12.2025 10:36:57 [] (unknown:0) - Database folder does not contain ctkDICOM.sql file: /
+[WARNING][Qt] 04.12.2025 10:36:57 [] (unknown:0) - Database folder does not contain ctkDICOM.sql file: /
+[WARNING][Qt] 04.12.2025 10:36:57 [] (unknown:0) - Database folder does not contain ctkDICOM.sql file: /
+[CRITICAL][Stream] 04.12.2025 10:36:59 [] (unknown:0) - Failed to create new database in folder: //ctkDICOM-Database
+[WARNING][Python] 04.12.2025 10:36:59 [Python] (/Applications/Slicer.app/Contents/bin/Python/slicer/util.py:3146) - Could not create a DICOM database with default settings. Please create a new database or update the existing incompatible database using options shown in DICOM browser.
+[WARNING][Qt] 04.12.2025 22:49:24 [] (unknown:0) - Back buffer dpr of 2 doesn't match <NSViewBackingLayer: 0x600002a5b810> contents scale of 1 - updating layer to match.
+[DEBUG][Qt] 05.12.2025 02:05:32 [] (unknown:0) - Switch to module:  ""
