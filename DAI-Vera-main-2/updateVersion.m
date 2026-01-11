@@ -1,16 +1,30 @@
 function updateVersion(app)
     newVersion = app.versionNumberDAI;
-    panelTitle = ['Dynamic Angiographic Imaging (DAI) - Vera', '   ', newVersion];
-    figureTitle = ['DAI - Vera', ' ', newVersion];
-    
+    panelTitle = ['Dynamic Angiographic Imaging (DAI) - Vera   ', newVersion];
+    figureTitle = ['DAI - Vera ', newVersion];
+
+    % Update figure title
     app.UIFigure.Name = figureTitle;
 
-    app.DynamicAngiographicImagingDAIVeraPanel.Title = panelTitle;
-    app.DynamicAngiographicImagingDAIVeraPanel_2.Title = panelTitle;
-    app.DynamicAngiographicImagingDAIVeraPanel_3.Title = panelTitle;
-    
-    % changeVersionInDarkMode(newVersion);
+    % List of possible panel names (old + new versions)
+    panelNames = {
+        'DynamicAngiographicImagingDAIVeraPanel'
+        'DynamicAngiographicImagingDAIVeraPanel_2'
+        'DynamicAngiographicImagingDAIVeraPanel_3'
+        'dynamicangiographicimagingdaiverapanel'
+        'dynamicangiographicimagingdaiverapanel_2'
+        'dynamicangiographicimagingdaiverapanel_3'
+    };
+
+    % Update only panels that actually exist
+    for i = 1:numel(panelNames)
+        pname = panelNames{i};
+        if isprop(app, pname)
+            app.(pname).Title = panelTitle;
+        end
+    end
 end
+
 
 function changeVersionInDarkMode(version)
 
